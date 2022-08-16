@@ -69,6 +69,7 @@ public class Controller {
 		User user = iUser.findUser(userId);
 		List <Education> educations = user.getEducations();
 		educations.add(education);
+		iUser.saveUser(user);
 		return "Educacion creada con éxito";
 	}
 	
@@ -80,8 +81,10 @@ public class Controller {
 		educations.forEach((Education education) -> {
 			if(education.getId() == educationId) {
 				educations.remove(education);
+				iUser.saveUser(user);
 			}
 		});
+		
 		return "Educación eliminada con éxito";
 	}
 	
@@ -116,6 +119,7 @@ public class Controller {
 		User user = iUser.findUser(userId);
 		List <Experience> experiences = user.getExperiences();
 		experiences.add(experience);
+		iUser.saveUser(user);
 		return "Experiencia creada con éxito";
 	}
 	
@@ -127,6 +131,7 @@ public class Controller {
 		experiences.forEach((Experience experience) -> {
 			if(experience.getId() == experienceId) {
 				experiences.remove(experience);
+				iUser.saveUser(user);
 			}
 		});
 		return "Experiencia eliminada con éxito";
@@ -162,6 +167,7 @@ public class Controller {
 		User user = iUser.findUser(userId);
 		List <Proyect> proyects = user.getProyects();
 		proyects.add(proyect);
+		iUser.saveUser(user);
 		return "Proyecto creado con éxito";
 	}
 	
@@ -173,6 +179,7 @@ public class Controller {
 		proyects.forEach((Proyect proyect) -> {
 			if(proyect.getId() == proyectId) {
 				proyects.remove(proyect);
+				iUser.saveUser(user);
 			}
 		});
 		return "Proyecto eliminado con éxito";
@@ -225,6 +232,7 @@ public class Controller {
 		User user = iUser.findUser(userId);
 		List <Skill> skills = user.getSkills();
 		skills.add(skill);
+		iUser.saveUser(user);
 		return "Skill creada con éxito";
 	}
 	
@@ -236,6 +244,7 @@ public class Controller {
 		skills.forEach((Skill skill) -> {
 			if(skill.getId() == skillId) {
 				skills.remove(skill);
+				iUser.saveUser(user);
 			}
 		});
 		return "Skill eliminada con éxito";
