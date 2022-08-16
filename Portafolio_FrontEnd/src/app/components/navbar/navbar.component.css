@@ -1,0 +1,29 @@
+.navbar {
+    background: #f3904f; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to right,
+      #3b4371,
+      #f3904f
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to right,
+      #3b4371,
+      #f3904f
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  .navbar-items-right {
+      width: 15%;
+  }
+  .navbar-social-icons {
+      font-size: 35px;
+      text-decoration: none;
+      color: black;
+      display: flex;
+      align-items: center;
+  }
+  .navbar-btn-login {
+      font-weight: 600;
+  }
+  .img-social-icon {
+    width: 30px;
+  }
