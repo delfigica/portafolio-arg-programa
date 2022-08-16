@@ -205,15 +205,20 @@ public class Controller {
 		return "Experiencia editada con éxito";
 	}
 	
-	@PostMapping("/user/proyect/addTecnology/{userId}/{proyectId}")
-	public String addTecnology(@PathVariable Long userId, @PathVariable Long proyectId, @RequestBody Skill tecnology) {
+	@PostMapping("/user/proyect/addTecnology/{userId}/{proyectId}/{idSkill}")
+	public String addTecnology(@PathVariable Long userId, @PathVariable Long proyectId, @PathVariable Long idSkill) {
 		User user = iUser.findUser(userId);
 		List <Proyect> proyects = user.getProyects();
-		
+		List <Skill> skills = user.getSkills();
+
 		proyects.forEach((Proyect proyect) -> {
 			if(proyect.getId() == proyectId) {
 				List<Skill> tecnologies = proyect.getTecnologies();
-				tecnologies.add(tecnology);
+				skills.forEach((Skill skill) -> {
+					if(skill.getId() == idSkill){
+						tecnologies.add(skill);						
+					}
+				}); 
 				iUser.saveUser(user);
 			}
 		});	

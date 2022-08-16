@@ -31,7 +31,7 @@ public class Proyect {
 	private String url;
 	
 	@OneToMany(cascade = CascadeType.ALL, targetEntity = Skill.class)
-	@JoinColumn(name = "PK_PROYECT", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "PK_PROYECT", referencedColumnName = "id")
 	private List<Skill> tecnologies;
 
 	public Proyect(Long id, String title, String description, String url, List<Skill> tecnologies) {
