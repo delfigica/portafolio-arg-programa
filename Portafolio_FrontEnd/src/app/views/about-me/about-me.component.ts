@@ -39,7 +39,7 @@ export class AboutMeComponent implements OnInit {
   deleteUserData() {
     const url = `https://backend-arg-progrma.herokuapp.com/user/edit/${1}`;
     axios
-      .post(url, {
+      .put(url, null, {
         params: {
           "title": "",
           "description": "",

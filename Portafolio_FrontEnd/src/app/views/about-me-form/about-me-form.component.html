@@ -3,7 +3,7 @@
   <form (ngSubmit)="editUserData()" class="card p-5">
     <div class="form-outline mb-4">
       <label class="form-label" >Titulo</label>
-      <input type="text" name="titleInput" class="form-control"  [(ngModel)]="titleInput" />
+      <input type="text" name="titleInput" class="form-control" value="data.title" [(ngModel)]="titleInput" />
     </div>
     <div class="form-outline mb-4">
       <label class="form-label" >Descripción</label>
@@ -14,6 +14,6 @@
         [(ngModel)]="descriptionInput"
       ></textarea>
     </div>
-    <button type="submit" routerLink="/admin/edit" class="btn btn-dark m-auto">Actualizar información</button>
+    <button type="submit" class="btn btn-dark m-auto">Actualizar información</button>
   </form>
 </div>

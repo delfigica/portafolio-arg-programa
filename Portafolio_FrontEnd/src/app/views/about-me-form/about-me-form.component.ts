@@ -39,27 +39,26 @@ export class AboutMeFormComponent implements OnInit {
   editUserData() {
     if (this.titleInput.trim().length > 0) {
       this.title = this.titleInput;
-    } else if (this.descriptionInput.trim().length > 0) {
+    }
+    if (this.descriptionInput.trim().length > 0) {
       this.description = this.descriptionInput;
     }
     const url = `https://backend-arg-progrma.herokuapp.com/user/edit/${1}`;
     axios
-      .post(url, null, {
+      .put(url, null, {
         params: {
           title: this.title,
           description: this.description,
           name: this.name,
-        },
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-        },
+        }
       })
-      .then(function (response) {
-        console.log(response);
+      .then((res) => {
+        this.data = res.data
+        this.router.navigate(['admin/edit'])
       })
       .catch(function (error) {
         console.log(error);
-      });
+      })
   }
 
   constructor(private router: Router) {}
