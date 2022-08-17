@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './views/header/header.component';
@@ -17,6 +18,9 @@ import { EducationComponentComponent } from './components/education-component/ed
 import { ExperienceComponentComponent } from './components/experience-component/experience-component.component';
 import { ProyectComponentComponent } from './components/proyect-component/proyect-component.component';
 import { SkillComponentComponent } from './components/skill-component/skill-component.component';
+import { EditComponent } from './views/edit/edit.component';
+import { AboutMeFormComponent } from './views/about-me-form/about-me-form.component';
+import { ExperienceFormComponent } from './views/experience-form/experience-form.component';
 
 @NgModule({
   declarations: [
@@ -34,16 +38,24 @@ import { SkillComponentComponent } from './components/skill-component/skill-comp
     EducationComponentComponent,
     ExperienceComponentComponent,
     ProyectComponentComponent,
-    SkillComponentComponent
+    SkillComponentComponent,
+    EditComponent,
+    AboutMeFormComponent,
+    ExperienceFormComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot([
       {path: '', component: HomeComponent},
-      {path: 'iniciar-sesion', component: LoginComponent}
+      {path: 'iniciar-sesion', component: LoginComponent},
+      {path: 'admin/edit', component: EditComponent },
+      {path: 'admin/edit/about-me', component: AboutMeFormComponent},
+      {path: 'admin/edit/add/experience', component:ExperienceFormComponent }
     ])
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

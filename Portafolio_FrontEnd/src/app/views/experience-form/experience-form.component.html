@@ -1,0 +1,19 @@
+<div class="container p-5">
+  <h4 class="text-center mb-2">Experiencia laboral</h4>
+  <form  class="card p-5">
+    <div class="form-outline mb-4">
+      <label class="form-label" >Titulo</label>
+      <input type="text" name="institutionInput" class="form-control"  [(ngModel)]="institutionInput" />
+    </div>
+    <div class="form-outline mb-4">
+      <label class="form-label" >Descripción</label>
+      <textarea
+        class="form-control"
+        name="descriptionInput"
+        rows="3"
+        [(ngModel)]="descriptionInput"
+      ></textarea>
+    </div>
+    <button type="submit" class="btn btn-dark m-auto">Agregar experiencia</button>
+  </form>
+</div>

@@ -1,13 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import axios from 'axios';
+
 @Component({
-  selector: 'app-about-me',
-  templateUrl: './about-me.component.html',
-  styleUrls: ['./about-me.component.css'],
+  selector: 'app-about-me-form',
+  templateUrl: './about-me-form.component.html',
+  styleUrls: ['./about-me-form.component.css'],
 })
-export class AboutMeComponent implements OnInit {
-  @Input() modeEdit: Boolean = false;
-  constructor() {}
+export class AboutMeFormComponent implements OnInit {
+  descriptionInput: string;
+  titleInput: string;
 
   public data: any;
 
@@ -17,7 +19,6 @@ export class AboutMeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserData();
-    console.log(this.modeEdit)
   }
 
   getUserData() {
@@ -35,22 +36,31 @@ export class AboutMeComponent implements OnInit {
       });
   }
 
-
-  deleteUserData() {
+  editUserData() {
+    if (this.titleInput.trim().length > 0) {
+      this.title = this.titleInput;
+    } else if (this.descriptionInput.trim().length > 0) {
+      this.description = this.descriptionInput;
+    }
     const url = `https://backend-arg-progrma.herokuapp.com/user/edit/${1}`;
     axios
-      .post(url, {
+      .post(url, null, {
         params: {
-          "title": "",
-          "description": "",
-          "name": ""
-        }
+          title: this.title,
+          description: this.description,
+          name: this.name,
+        },
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
       })
       .then(function (response) {
         console.log(response);
       })
       .catch(function (error) {
         console.log(error);
-      })
+      });
   }
+
+  constructor(private router: Router) {}
 }

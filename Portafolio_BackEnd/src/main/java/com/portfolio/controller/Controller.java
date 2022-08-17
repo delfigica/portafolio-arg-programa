@@ -1,5 +1,4 @@
 package com.portfolio.controller;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +24,15 @@ public class Controller {
 	@Autowired
 	private IUserService iUser;
 
+	
 	@GetMapping("/users/get")
-	public List<User> getUser() {
+	public List<User> getUsers() {
 		return iUser.getUsers();
+	}
+
+	@GetMapping("/users/get/{userId}")
+	public User getUser(@PathVariable Long userId) {
+		return iUser.findUser(userId);
 	}
 
 	@PostMapping("/user/generate")

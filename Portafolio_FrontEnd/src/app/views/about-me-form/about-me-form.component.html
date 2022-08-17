@@ -1,0 +1,19 @@
+<div class="container p-5">
+  <h4 class="text-center mb-2">Información sobre mi</h4>
+  <form (ngSubmit)="editUserData()" class="card p-5">
+    <div class="form-outline mb-4">
+      <label class="form-label" >Titulo</label>
+      <input type="text" name="titleInput" class="form-control"  [(ngModel)]="titleInput" />
+    </div>
+    <div class="form-outline mb-4">
+      <label class="form-label" >Descripción</label>
+      <textarea
+        class="form-control"
+        name="descriptionInput"
+        rows="3"
+        [(ngModel)]="descriptionInput"
+      ></textarea>
+    </div>
+    <button type="submit" routerLink="/admin/edit" class="btn btn-dark m-auto">Actualizar información</button>
+  </form>
+</div>

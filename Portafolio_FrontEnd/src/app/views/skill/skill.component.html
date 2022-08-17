@@ -1,13 +1,6 @@
 <div class="container p-3">
     <h4>Skills & Lenguajes</h4>
-    <div class="d-flex flex-wrap">
-        <app-skill-component></app-skill-component>
-        <app-skill-component></app-skill-component>
-        <app-skill-component></app-skill-component>
-        <app-skill-component></app-skill-component>
-        <app-skill-component></app-skill-component>
-        <app-skill-component></app-skill-component>
-        <app-skill-component></app-skill-component>
-
+    <div class="d-flex flex-wrap" *ngFor="let skill of skills">
+        <app-skill-component [skill]="skill"></app-skill-component>
     </div>
 </div>
