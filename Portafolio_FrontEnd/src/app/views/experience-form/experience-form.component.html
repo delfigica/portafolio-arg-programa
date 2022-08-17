@@ -1,8 +1,8 @@
 <div class="container p-5">
   <h4 class="text-center mb-2">Experiencia laboral</h4>
-  <form  class="card p-5">
+  <form (ngSubmit)="addExperience()"  class="card p-5">
     <div class="form-outline mb-4">
-      <label class="form-label" >Titulo</label>
+      <label class="form-label" >Nombre de la institución</label>
       <input type="text" name="institutionInput" class="form-control"  [(ngModel)]="institutionInput" />
     </div>
     <div class="form-outline mb-4">
@@ -14,6 +14,6 @@
         [(ngModel)]="descriptionInput"
       ></textarea>
     </div>
-    <button type="submit" class="btn btn-dark m-auto">Agregar experiencia</button>
+    <button type="submit" class="btn btn-dark m-auto" >Agregar experiencia</button>
   </form>
 </div>
