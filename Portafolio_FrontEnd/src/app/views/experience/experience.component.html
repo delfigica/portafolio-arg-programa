@@ -8,6 +8,6 @@
   <h4 class="ms-3">Experiencia Laboral</h4>
   <button class="ms-3 btn btn-dark" routerLink="/admin/edit/add/experience" >Agregar</button>
   <div *ngFor="let experience of experiences">
-    <app-experience-component experience="experience"></app-experience-component>
+    <app-experience-component [experience]="experience"></app-experience-component>
   </div>
 </div>

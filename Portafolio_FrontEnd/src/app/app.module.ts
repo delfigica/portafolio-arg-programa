@@ -51,7 +51,8 @@ import { ExperienceFormComponent } from './views/experience-form/experience-form
       {path: 'iniciar-sesion', component: LoginComponent},
       {path: 'admin/edit', component: EditComponent },
       {path: 'admin/edit/about-me', component: AboutMeFormComponent},
-      {path: 'admin/edit/add/experience', component:ExperienceFormComponent }
+      {path: 'admin/edit/add/experience', component:ExperienceFormComponent },
+      {path: 'admin/edit/experience/:experienceId', component: ExperienceFormComponent}
     ])
   ],
   providers: [],

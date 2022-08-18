@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import axios from 'axios';
 
 @Component({
@@ -7,16 +7,30 @@ import axios from 'axios';
   templateUrl: './experience-form.component.html',
   styleUrls: ['./experience-form.component.css'],
 })
-export class ExperienceFormComponent implements OnInit {
+export class ExperienceFormComponent implements OnInit, OnDestroy {
   public experiences: any;
-
-  descriptionInput: String;
-  institutionInput: String;
-
-  constructor(private router: Router) {}
+  experience: any;
+  descriptionInput: string;
+  institutionInput: string;
+  experienceId: any;
+  private sub: any;
+  textBtn: string = 'Agregar experiencia'
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.getExperienceData()
+    this.getExperienceData();
+    this.sub = this.route.params.subscribe( params => {
+      this.experienceId = params['experienceId']
+    })
+
+    if(this.experienceId !== null) {
+      this.textBtn = "Editar experiencia"
+    }
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+
   }
 
   getExperienceData() {
@@ -24,8 +38,10 @@ export class ExperienceFormComponent implements OnInit {
     axios
       .get(url)
       .then((res) => {
-        console.log(res.data);
-        this.router.navigate(['admin/edit'])
+        this.experiences = res.data;
+        if(this.experienceId !== undefined) {
+          this.experience = this.experiences.find((e: any) => e.id == this.experienceId);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -40,8 +56,8 @@ export class ExperienceFormComponent implements OnInit {
         name_institution: this.institutionInput,
       })
       .then((res) => {
-        console.log(res.data);
-        console.log(this.experiences)
+        console.log(res)
+        this.router.navigate(['admin/edit'])
       })
       .catch((err) => {
         console.log(err);

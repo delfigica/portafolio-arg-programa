@@ -4,13 +4,10 @@ import axios from 'axios';
 @Component({
   selector: 'app-education',
   templateUrl: './education.component.html',
-  styleUrls: ['./education.component.css']
+  styleUrls: ['./education.component.css'],
 })
 export class EducationComponent implements OnInit {
-
   public educations: any;
-
-  constructor() { }
 
   ngOnInit(): void {
     this.getEducationData();
