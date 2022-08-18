@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import axios from 'axios';
 @Component({
   selector: 'app-about-me',
@@ -6,8 +7,9 @@ import axios from 'axios';
   styleUrls: ['./about-me.component.css'],
 })
 export class AboutMeComponent implements OnInit {
-  @Input() modeEdit: Boolean = false;
-  constructor() {}
+  constructor(private router: Router) {}
+
+  @Input() modeEdit: boolean = false;
 
   public data: any;
 
@@ -17,7 +19,6 @@ export class AboutMeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserData();
-    console.log(this.modeEdit)
   }
 
   getUserData() {
@@ -35,7 +36,6 @@ export class AboutMeComponent implements OnInit {
       });
   }
 
-
   deleteUserData() {
     const url = `https://backend-arg-progrma.herokuapp.com/user/edit/${1}`;
     axios
@@ -46,8 +46,9 @@ export class AboutMeComponent implements OnInit {
           "name": ""
         }
       })
-      .then(function (response) {
-        console.log(response);
+      .then((res) => {
+        this.data = res.data;
+        this.router.navigate(['admin/edit'])
       })
       .catch(function (error) {
         console.log(error);

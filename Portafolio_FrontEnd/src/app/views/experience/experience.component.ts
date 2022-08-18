@@ -8,8 +8,7 @@ import axios from 'axios';
 export class ExperienceComponent implements OnInit {
   public experiences: any;
 
-  @Input() modeEdit: Boolean = false;
-  constructor() {}
+  @Input() modeEdit: boolean = false;
 
   ngOnInit(): void {
     this.getExperienceData();
