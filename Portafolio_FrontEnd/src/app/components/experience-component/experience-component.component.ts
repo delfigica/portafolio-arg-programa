@@ -7,6 +7,7 @@ import axios from 'axios';
   styleUrls: ['./experience-component.component.css'],
 })
 export class ExperienceComponentComponent implements OnInit {
+
   @Input() experience: any;
   public experiences: any;
 
@@ -21,7 +22,6 @@ export class ExperienceComponentComponent implements OnInit {
     axios
       .get(url)
       .then((res) => {
-        console.log(res.data);
         this.experiences = res.data;
       })
       .catch((err) => {
