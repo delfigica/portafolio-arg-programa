@@ -63,10 +63,9 @@ public class Controller {
 	}
 	
 	@GetMapping("/user/education/{userId}")
-	private List<Education> getEducations(@PathVariable Long userId) {
+	public List<Education> getEducations(@PathVariable Long userId) {
 		User user = iUser.findUser(userId);
-		List <Education> educations = user.getEducations();
-		return educations;
+		return user.getEducations();
 	}
 	
 	@PostMapping("/user/education/generate/{userId}")
@@ -103,7 +102,7 @@ public class Controller {
 		List <Education> educations = user.getEducations();
 		
 		educations.forEach((Education education) -> {
-			if(education.getId() == educationId) {
+			if(education.getId().equals(educationId)) {
 				education.setDescription(newDescription);
 				education.setName_institution(newName);
 				iUser.saveUser(user);
@@ -114,10 +113,9 @@ public class Controller {
 	}
 	
 	@GetMapping("/user/experience/{userId}")
-	private List<Experience> getExperiences(@PathVariable Long userId) {
+	public List<Experience> getExperiences(@PathVariable Long userId) {
 		User user = iUser.findUser(userId);
-		List <Experience> experiences = user.getExperiences();
-		return experiences;
+		return user.getExperiences();
 	}
 	
 	@PostMapping("/user/experience/generate/{userId}")
@@ -135,7 +133,7 @@ public class Controller {
 		List <Experience> experiences = user.getExperiences();
 		
 		experiences.forEach((Experience experience) -> {
-			if(experience.getId() == experienceId) {
+			if(experience.getId().equals(experienceId)) {
 				int index = experiences.indexOf(experience);
 				experiences.remove(index);
 				iUser.saveUser(user);
@@ -153,7 +151,7 @@ public class Controller {
 		List <Experience> experiences = user.getExperiences();
 		
 		experiences.forEach((Experience experience) -> {
-			if(experience.getId() == experienceId) {
+			if(experience.getId().equals(experienceId)) {
 				experience.setDescription(newDescription);
 				experience.setName_institution(newName);
 				iUser.saveUser(user);
@@ -163,10 +161,9 @@ public class Controller {
 	}
 	
 	@GetMapping("/user/proyect/{userId}")
-	private List<Proyect> getProyect(@PathVariable Long userId) {
+	public List<Proyect> getProyect(@PathVariable Long userId) {
 		User user = iUser.findUser(userId);
-		List <Proyect> proyect = user.getProyects();
-		return proyect;
+		return user.getProyects();
 	}
 	
 	@PostMapping("/user/proyect/generate/{userId}")
@@ -184,7 +181,7 @@ public class Controller {
 		List <Proyect> proyects = user.getProyects();
 		
 		proyects.forEach((Proyect proyect) -> {
-			if(proyect.getId() == proyectId) {
+			if(proyect.getId().equals(proyectId)) {
 				int index = proyects.indexOf(proyect);
 				proyects.remove(index);
 				iUser.saveUser(user);
@@ -203,14 +200,14 @@ public class Controller {
 		List <Proyect> proyects = user.getProyects();
 		
 		proyects.forEach((Proyect proyect) -> {
-			if(proyect.getId() == proyectId) {
+			if(proyect.getId().equals(proyectId)) {
 				proyect.setDescription(newDescription);
 				proyect.setTitle(newTitle);
 				proyect.setUrl(newUrl);
 				iUser.saveUser(user);
 			}
 		});		
-		return "Experiencia editada con éxito";
+		return "Proyecto editado con éxito";
 	}
 	
 	@PostMapping("/user/proyect/addTecnology/{userId}/{proyectId}/{idSkill}")
@@ -220,10 +217,10 @@ public class Controller {
 		List <Skill> skills = user.getSkills();
 
 		proyects.forEach((Proyect proyect) -> {
-			if(proyect.getId() == proyectId) {
+			if(proyect.getId().equals(proyectId)) {
 				List<Skill> tecnologies = proyect.getTecnologies();
 				skills.forEach((Skill skill) -> {
-					if(skill.getId() == idSkill){
+					if(skill.getId().equals(idSkill)){
 						tecnologies.add(skill);						
 					}
 				}); 
@@ -234,10 +231,9 @@ public class Controller {
 	}
 	
 	@GetMapping("/user/skill/{userId}")
-	private List<Skill> getSkills(@PathVariable Long userId) {
+	public List<Skill> getSkills(@PathVariable Long userId) {
 		User user = iUser.findUser(userId);
-		List <Skill> skill = user.getSkills();
-		return skill;
+		return user.getSkills();
 	}
 	
 	@PostMapping("/user/skill/generate/{userId}")
@@ -255,7 +251,7 @@ public class Controller {
 		List <Skill> skills = user.getSkills();
 		
 		skills.forEach((Skill skill) -> {
-			if(skill.getId() == skillId) {
+			if(skill.getId().equals(skillId)) {
 				int index = skills.indexOf(skill);
 				skills.remove(index);
 				iUser.saveUser(user);
@@ -274,7 +270,7 @@ public class Controller {
 		List <Skill> skills = user.getSkills();
 		
 		skills.forEach((Skill skill) -> {
-			if(skill.getId() == skillId) {
+			if(skill.getId().equals(skillId)) {
 				skill.setPercentage(newPercentage);
 				skill.setName(newName);
 				skill.setUrl(newUrl);
