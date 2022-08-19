@@ -14,23 +14,22 @@ export class ExperienceFormComponent implements OnInit, OnDestroy {
   institutionInput: string;
   experienceId: any;
   private sub: any;
-  textBtn: string = 'Agregar experiencia'
+  textBtn: string = 'Agregar experiencia';
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.getExperienceData();
-    this.sub = this.route.params.subscribe( params => {
-      this.experienceId = params['experienceId']
-    })
+    this.sub = this.route.params.subscribe((params) => {
+      this.experienceId = params['experienceId'];
+    });
 
-    if(this.experienceId !== null) {
-      this.textBtn = "Editar experiencia"
+    if (this.experienceId !== null) {
+      this.textBtn = 'Editar experiencia';
     }
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-
   }
 
   getExperienceData() {
@@ -39,8 +38,14 @@ export class ExperienceFormComponent implements OnInit, OnDestroy {
       .get(url)
       .then((res) => {
         this.experiences = res.data;
-        if(this.experienceId !== undefined) {
-          this.experience = this.experiences.find((e: any) => e.id == this.experienceId);
+        if (this.experienceId !== undefined) {
+          this.experience = this.experiences.find(
+            (e: any) => e.id == this.experienceId
+
+          );
+          console.log(this.experience);
+          this.descriptionInput = this.experience.description;
+          this.institutionInput = this.experience.name_institution;
         }
       })
       .catch((err) => {
@@ -56,8 +61,28 @@ export class ExperienceFormComponent implements OnInit, OnDestroy {
         name_institution: this.institutionInput,
       })
       .then((res) => {
-        console.log(res)
-        this.router.navigate(['admin/edit'])
+        console.log(res);
+        this.router.navigate(['admin/edit']);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  editExperience() {
+    const url = `https://backend-arg-progrma.herokuapp.com/user/experience/edit/${1}/${
+      this.experienceId
+    }`;
+    axios
+      .put(url, null, {
+        params: {
+          name_institution: this.institutionInput,
+          description: this.descriptionInput,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        this.router.navigate(['admin/edit']);
       })
       .catch((err) => {
         console.log(err);

@@ -1,15 +1,15 @@
 <div class="d-flex align-items-center justify-content-between p-3">
-    <div class="experience-logo me-3">
-      <img src="../../assets/arg-programa.png" alt="" />
-    </div>
-    <div class="experience-body text-start">
-      <h4>{{ experience.name_institution }}</h4>
-      <p class="experience-body-description">
-        {{ experience.description }}
-      </p>
-    </div>
-    <div class="d-flex flex-column">
-      <button
+  <div class="experience-logo me-3">
+    <img src="../../assets/arg-programa.png" alt="" />
+  </div>
+  <div class="experience-body text-start">
+    <h4>{{ experience.name_institution }}</h4>
+    <p class="experience-body-description">
+      {{ experience.description }}
+    </p>
+  </div>
+  <div class="d-flex flex-column">
+    <button
       type="button"
       class="btn btn-link btn-floating mx-1"
       [routerLink]="['/admin/edit/experience/', experience.id]"
@@ -25,11 +25,7 @@
         />
       </svg>
     </button>
-    <button
-      type="button"
-      class="btn btn-link btn-floating mx-1"
-
-    >
+    <button type="button" class="btn btn-link btn-floating mx-1" (click)="deleteExperience(experience.id)">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 448 512"
@@ -41,6 +37,5 @@
         />
       </svg>
     </button>
-    </div>
   </div>
-  
+</div>

@@ -26,4 +26,15 @@ export class ExperienceComponent implements OnInit {
         console.log(err);
       });
   }
+
+  deleteExperience(experienceId: any) {
+    const url = `https://backend-arg-progrma.herokuapp.com/user/experience/delete/{1}/${experienceId}`;
+    axios.delete(url)
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
 }
