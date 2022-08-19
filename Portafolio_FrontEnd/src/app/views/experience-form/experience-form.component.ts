@@ -23,7 +23,7 @@ export class ExperienceFormComponent implements OnInit, OnDestroy {
       this.experienceId = params['experienceId'];
     });
 
-    if (this.experienceId !== null) {
+    if (this.experienceId !== undefined) {
       this.textBtn = 'Editar experiencia';
     }
   }

@@ -1,6 +1,15 @@
-<div class="container mt-2">
+<div class="container mt-2" *ngIf="!modeEdit">
     <h4 class="ms-3">Educación & Certificaciones</h4>
     <div *ngFor="let education of educations">
       <app-education-component [education]=education ></app-education-component>
     </div>
+</div>
+<div class="container mt-2" *ngIf="modeEdit">
+  <h4 class="ms-3">Educación & Certificaciones</h4>
+  <button class="ms-3 btn btn-dark" routerLink="/admin/edit/add/education">
+    Agregar
+  </button>
+  <div *ngFor="let education of educations">
+    <app-education-component [education]=education [modeEdit]="modeEdit" ></app-education-component>
+  </div>
 </div>

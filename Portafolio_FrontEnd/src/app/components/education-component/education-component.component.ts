@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class EducationComponentComponent implements OnInit {
   @Input() education: any;
+  @Input() modeEdit: boolean = false;
 
   constructor() {}
 

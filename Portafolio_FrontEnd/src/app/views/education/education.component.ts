@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import axios from 'axios';
 
 @Component({
@@ -8,6 +8,7 @@ import axios from 'axios';
 })
 export class EducationComponent implements OnInit {
   public educations: any;
+  @Input() modeEdit: boolean = false;
 
   ngOnInit(): void {
     this.getEducationData();

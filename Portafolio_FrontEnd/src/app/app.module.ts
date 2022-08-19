@@ -54,7 +54,11 @@ import { EducationFormComponent } from './views/education-form/education-form.co
       {path: 'admin/edit', component: EditComponent },
       {path: 'admin/edit/about-me', component: AboutMeFormComponent},
       {path: 'admin/edit/add/experience', component:ExperienceFormComponent },
-      {path: 'admin/edit/experience/:experienceId', component: ExperienceFormComponent}
+      {path: 'admin/edit/experience/:experienceId', component: ExperienceFormComponent},
+      {path: 'admin/edit/add/education', component: EducationFormComponent },
+      {path: 'admin/edit/education/:educationId', component: EducationFormComponent }
+
+
     ])
   ],
   providers: [],
