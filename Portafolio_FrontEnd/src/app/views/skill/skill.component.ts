@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import axios from 'axios';
 @Component({
   selector: 'app-skill',
@@ -7,6 +7,7 @@ import axios from 'axios';
 })
 export class SkillComponent implements OnInit {
   public skills: any;
+  @Input() modeEdit: boolean = false;
 
   constructor() { }
 

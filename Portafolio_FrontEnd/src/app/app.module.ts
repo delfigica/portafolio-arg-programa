@@ -22,6 +22,7 @@ import { EditComponent } from './views/edit/edit.component';
 import { AboutMeFormComponent } from './views/about-me-form/about-me-form.component';
 import { ExperienceFormComponent } from './views/experience-form/experience-form.component';
 import { EducationFormComponent } from './views/education-form/education-form.component';
+import { SkillFormComponent } from './views/skill-form/skill-form.component';
 
 @NgModule({
   declarations: [
@@ -43,26 +44,33 @@ import { EducationFormComponent } from './views/education-form/education-form.co
     EditComponent,
     AboutMeFormComponent,
     ExperienceFormComponent,
-    EducationFormComponent
+    EducationFormComponent,
+    SkillFormComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot([
-      {path: '', component: HomeComponent},
-      {path: 'iniciar-sesion', component: LoginComponent},
-      {path: 'admin/edit', component: EditComponent },
-      {path: 'admin/edit/about-me', component: AboutMeFormComponent},
-      {path: 'admin/edit/add/experience', component:ExperienceFormComponent },
-      {path: 'admin/edit/experience/:experienceId', component: ExperienceFormComponent},
-      {path: 'admin/edit/add/education', component: EducationFormComponent },
-      {path: 'admin/edit/education/:educationId', component: EducationFormComponent }
+      { path: '', component: HomeComponent },
+      { path: 'iniciar-sesion', component: LoginComponent },
+      { path: 'admin/edit', component: EditComponent },
+      { path: 'admin/edit/about-me', component: AboutMeFormComponent },
+      { path: 'admin/edit/add/experience', component: ExperienceFormComponent },
+      {
+        path: 'admin/edit/experience/:experienceId',
+        component: ExperienceFormComponent,
+      },
+      { path: 'admin/edit/add/education', component: EducationFormComponent },
+      {
+        path: 'admin/edit/education/:educationId',
+        component: EducationFormComponent,
+      },
+      { path: 'admin/edit/add/skill', component: SkillFormComponent },
+      { path: 'admin/edit/skill/:skillId', component: SkillFormComponent }
 
-
-    ])
+    ]),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-
-export class AppModule { }
+export class AppModule {}

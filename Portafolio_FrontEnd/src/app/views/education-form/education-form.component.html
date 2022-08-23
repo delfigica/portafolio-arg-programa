@@ -1,7 +1,10 @@
 <div class="container p-5">
   <h4 class="text-center mb-2">Educación & Certificación</h4>
-    
-    <form class="card p-5" (ngSubmit)="educationId ? editEducation() : addEducation()">
+
+  <form
+    class="card p-5"
+    (ngSubmit)="educationId ? editEducation() : addEducation()"
+  >
     <div class="form-outline mb-4">
       <label class="form-label">Nombre de la institución</label>
       <input

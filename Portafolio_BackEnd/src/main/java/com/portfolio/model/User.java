@@ -30,19 +30,19 @@ public class User {
 	@Column(name = "name")
 	private String name;
 	
-	@OneToMany(cascade = CascadeType.ALL, targetEntity = Experience.class)
+	@OneToMany(cascade = CascadeType.ALL, targetEntity = Experience.class, orphanRemoval = true)
 	@JoinColumn(name = "PK_USER", referencedColumnName = "id", nullable = false)
 	private List<Experience> experiences;
 	
-	@OneToMany(cascade = CascadeType.ALL, targetEntity = Education.class)
+	@OneToMany(cascade = CascadeType.ALL, targetEntity = Education.class, orphanRemoval = true)
 	@JoinColumn(name = "PK_USER", referencedColumnName = "id", nullable = false)
 	private List<Education> educations;
 	
-	@OneToMany(cascade = CascadeType.ALL, targetEntity = Proyect.class)
+	@OneToMany(cascade = CascadeType.ALL, targetEntity = Proyect.class, orphanRemoval = true)
 	@JoinColumn(name = "PK_USER", referencedColumnName = "id", nullable = false)
 	private List<Proyect> proyects;
 	
-	@OneToMany(cascade = CascadeType.ALL, targetEntity = Skill.class)
+	@OneToMany(cascade = CascadeType.ALL, targetEntity = Skill.class, orphanRemoval = true)
 	@JoinColumn(name = "PK_USER", referencedColumnName = "id", nullable = false)
 	private List<Skill> skills;
 
@@ -103,12 +103,20 @@ public class User {
 		this.experiences = experiences;
 	}
 
+	public void deleteExperience(Experience experience) {
+		this.experiences.remove(experience);
+	}
+
 	public List<Education> getEducations() {
 		return educations;
 	}
 
 	public void setEducations(List<Education> educations) {
 		this.educations = educations;
+	}
+
+	public void deleteEducation(Education education) {
+		this.educations.remove(education);
 	}
 
 	public List<Proyect> getProyects() {
@@ -119,11 +127,19 @@ public class User {
 		this.proyects = proyects;
 	}
 
+	public void deleteProyect(Proyect proyect){
+		this.proyects.remove(proyect);
+	}
+
 	public List<Skill> getSkills() {
 		return skills;
 	}
 
 	public void setSkills(List<Skill> skills) {
 		this.skills = skills;
+	}
+
+	public void deleteSkill(Skill skill){
+		this.skills.remove(skill);
 	}
 }

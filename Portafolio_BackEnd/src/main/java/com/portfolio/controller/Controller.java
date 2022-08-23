@@ -83,9 +83,8 @@ public class Controller {
 		List <Education> educations = user.getEducations();
 		
 		educations.forEach((Education education) -> {
-			if(education.getId() == educationId) {
-				int index = educations.indexOf(education);
-				educations.remove(index);
+			if(education.getId().equals(educationId)) {
+				user.deleteEducation(education);
 				iUser.saveUser(user);
 			}
 		});
@@ -134,8 +133,7 @@ public class Controller {
 		
 		experiences.forEach((Experience experience) -> {
 			if(experience.getId().equals(experienceId)) {
-				int index = experiences.indexOf(experience);
-				experiences.remove(index);
+				user.deleteExperience(experience);
 				iUser.saveUser(user);
 			}
 		});
@@ -182,8 +180,7 @@ public class Controller {
 		
 		proyects.forEach((Proyect proyect) -> {
 			if(proyect.getId().equals(proyectId)) {
-				int index = proyects.indexOf(proyect);
-				proyects.remove(index);
+				user.deleteProyect(proyect);
 				iUser.saveUser(user);
 			}
 		});
@@ -252,8 +249,7 @@ public class Controller {
 		
 		skills.forEach((Skill skill) -> {
 			if(skill.getId().equals(skillId)) {
-				int index = skills.indexOf(skill);
-				skills.remove(index);
+				user.deleteSkill(skill);
 				iUser.saveUser(user);
 			}
 		});

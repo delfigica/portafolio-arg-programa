@@ -1,6 +1,11 @@
 <div class="container p-3">
-    <h4>Skills & Lenguajes</h4>
-    <div class="d-flex flex-wrap" *ngFor="let skill of skills">
-        <app-skill-component [skill]="skill"></app-skill-component>
+  <h4>Skills & Lenguajes</h4>
+  <button class="ms-3 btn btn-dark" routerLink="/admin/edit/add/skill" *ngIf="modeEdit">
+    Agregar
+  </button>
+  <div class="d-flex justify-content-evenly flex-wrap">
+    <div *ngFor="let skill of skills">
+      <app-skill-component [skill]="skill" [modeEdit]="modeEdit"></app-skill-component>
     </div>
+  </div>
 </div>

@@ -50,6 +50,7 @@ export class EducationFormComponent implements OnInit, OnDestroy {
         console.log(err);
       });
   }
+  
   addEducation() {
     const url = `https://backend-arg-progrma.herokuapp.com/user/education/generate/${1}`;
     axios
