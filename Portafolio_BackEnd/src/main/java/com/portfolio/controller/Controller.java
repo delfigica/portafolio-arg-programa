@@ -165,12 +165,12 @@ public class Controller {
 	}
 	
 	@PostMapping("/user/proyect/generate/{userId}")
-	public String createProyect(@PathVariable Long userId, @RequestBody Proyect proyect) {
+	public Proyect createProyect(@PathVariable Long userId, @RequestBody Proyect proyect) {
 		User user = iUser.findUser(userId);
 		List <Proyect> proyects = user.getProyects();
 		proyects.add(proyect);
 		iUser.saveUser(user);
-		return "Proyecto creado con éxito";
+		return proyect;
 	}
 	
 	@DeleteMapping("/user/proyect/delete/{userId}/{proyectId}")
