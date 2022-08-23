@@ -33,8 +33,7 @@ export class ExperienceComponentComponent implements OnInit {
     const url = `https://backend-arg-progrma.herokuapp.com/user/experience/delete/${1}/${ID}`;
     axios.delete(url)
     .then(res => {
-      console.log(res);
-      console.log('eliminado')
+      console.log(res.data);
     })
     .catch(err => {
       console.log(err)

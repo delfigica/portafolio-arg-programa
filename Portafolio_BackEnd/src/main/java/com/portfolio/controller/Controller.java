@@ -92,7 +92,7 @@ public class Controller {
 		return "Educación eliminada con éxito";
 	}
 	
-	@PutMapping("/user/education/edit/{userId}/educationId")
+	@PutMapping("/user/education/edit/{userId}/{educationId}")
 	public String editEducation(@PathVariable Long userId, 
 			@PathVariable Long educationId,
 			@RequestParam("name_institution") String newName,

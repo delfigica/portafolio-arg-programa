@@ -42,6 +42,7 @@ export class EducationFormComponent implements OnInit, OnDestroy {
           this.education = this.educations.find(
             (e: any) => e.id == this.educationId
           );
+          console.log(this.education);
           this.descriptionInput = this.education.description;
           this.institutionInput = this.education.name_institution;
         }
@@ -50,7 +51,7 @@ export class EducationFormComponent implements OnInit, OnDestroy {
         console.log(err);
       });
   }
-  
+
   addEducation() {
     const url = `https://backend-arg-progrma.herokuapp.com/user/education/generate/${1}`;
     axios

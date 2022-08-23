@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import axios from 'axios';
 
 @Component({
   selector: 'app-education-component',
@@ -7,9 +8,35 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class EducationComponentComponent implements OnInit {
   @Input() education: any;
+  public educations: any;
+
   @Input() modeEdit: boolean = false;
 
-  constructor() {}
+  ngOnInit(): void {
+    this.getEducationsData();
+  }
 
-  ngOnInit(): void {}
+  getEducationsData() {
+    const url = `https://backend-arg-progrma.herokuapp.com/user/education/${1}`;
+    axios
+      .get(url)
+      .then((res) => {
+        this.educations = res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  deleteEducation(ID: any) {
+    const url = `https://backend-arg-progrma.herokuapp.com/user/education/delete/${1}/${ID}`;
+    axios
+      .delete(url)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
