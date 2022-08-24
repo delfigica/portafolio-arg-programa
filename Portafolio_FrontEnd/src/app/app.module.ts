@@ -25,9 +25,10 @@ import { EducationFormComponent } from './views/education-form/education-form.co
 import { SkillFormComponent } from './views/skill-form/skill-form.component';
 import { ProyectFormComponent } from './views/proyect-form/proyect-form.component';
 import { TecnologyFormComponent } from './views/tecnology-form/tecnology-form.component';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
 @NgModule({
   declarations: [
@@ -61,28 +62,60 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'iniciar-sesion', component: LoginComponent },
-      { path: 'admin/edit', component: EditComponent },
-      { path: 'admin/edit/about-me', component: AboutMeFormComponent },
-      { path: 'admin/edit/add/experience', component: ExperienceFormComponent },
+      {
+        path: 'admin/edit',
+        component: EditComponent,
+        ...canActivate(() => redirectUnauthorizedTo(['/iniciar-sesion'])),
+      },
+      {
+        path: 'admin/edit/about-me',
+        component: AboutMeFormComponent,
+        ...canActivate(() => redirectUnauthorizedTo(['/iniciar-sesion'])),
+      },
+      {
+        path: 'admin/edit/add/experience',
+        component: ExperienceFormComponent,
+        ...canActivate(() => redirectUnauthorizedTo(['/iniciar-sesion'])),
+      },
       {
         path: 'admin/edit/experience/:experienceId',
         component: ExperienceFormComponent,
+        ...canActivate(() => redirectUnauthorizedTo(['/iniciar-sesion'])),
       },
-      { path: 'admin/edit/add/education', component: EducationFormComponent },
+      {
+        path: 'admin/edit/add/education',
+        component: EducationFormComponent,
+        ...canActivate(() => redirectUnauthorizedTo(['/iniciar-sesion'])),
+      },
       {
         path: 'admin/edit/education/:educationId',
         component: EducationFormComponent,
+        ...canActivate(() => redirectUnauthorizedTo(['/iniciar-sesion'])),
       },
-      { path: 'admin/edit/add/skill', component: SkillFormComponent },
-      { path: 'admin/edit/skill/:skillId', component: SkillFormComponent },
-      { path: 'admin/edit/add/proyect', component: ProyectFormComponent },
+      {
+        path: 'admin/edit/add/skill',
+        component: SkillFormComponent,
+        ...canActivate(() => redirectUnauthorizedTo(['/iniciar-sesion'])),
+      },
+      {
+        path: 'admin/edit/skill/:skillId',
+        component: SkillFormComponent,
+        ...canActivate(() => redirectUnauthorizedTo(['/iniciar-sesion'])),
+      },
+      {
+        path: 'admin/edit/add/proyect',
+        component: ProyectFormComponent,
+        ...canActivate(() => redirectUnauthorizedTo(['/iniciar-sesion'])),
+      },
       {
         path: 'admin/edit/proyect/tecnologies/:proyectId',
-        component: TecnologyFormComponent
+        component: TecnologyFormComponent,
+        ...canActivate(() => redirectUnauthorizedTo(['/iniciar-sesion'])),
       },
       {
         path: 'admin/edit/proyect/:proyectId',
         component: ProyectFormComponent,
+        ...canActivate(() => redirectUnauthorizedTo(['/iniciar-sesion'])),
       },
     ]),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
