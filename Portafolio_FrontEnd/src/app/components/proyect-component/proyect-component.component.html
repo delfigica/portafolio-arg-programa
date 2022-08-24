@@ -1,87 +1,30 @@
-<div class="container-fluid d-flex">
-    <div class="card m-3">
-      <div class="card-header">
-        <h5 class="card-title text-center">Titulo del proyecto</h5>
-      </div>
-      <div class="card-body">
-        <p class="card-text text-justify p-2">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis iste,
-          deleniti delectus repellendus non saepe nihil repudiandae quasi
-          reprehenderit dolorum in, voluptatem sequi vero error enim est
-          consectetur aliquam. Exercitationem.
-        </p>
-        <div class="d-flex justify-content-between m-2">
-          <div class="card-skill-logo">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/2048px-HTML5_logo_and_wordmark.svg.png"
-              alt="HTML"
-            />
-          </div>
-          <div class="card-skill-logo">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/2048px-HTML5_logo_and_wordmark.svg.png"
-              alt="HTML"
-            />
-          </div>
-          <div class="card-skill-logo">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/2048px-HTML5_logo_and_wordmark.svg.png"
-              alt="HTML"
-            />
-          </div>
-          <div class="card-skill-logo">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/2048px-HTML5_logo_and_wordmark.svg.png"
-              alt="HTML"
-            />
-          </div>
-        </div>
-        <div class="card-action text-end m-2 mt-4">
-          <button class="btn btn-dark">VISITAR SITIO WEB</button>
-        </div>
+<div class="card m-3">
+  <div class="card-header">
+    <h5 class="card-title text-center">{{ proyect.title }}</h5>
+  </div>
+  <div class="card-body">
+    <p class="card-text text-justify p-2">
+      {{ proyect.description }}
+    </p>
+    <div class="d-flex justify-content-evenly m-2">
+      <div class="card-skill-logo" *ngFor="let tecnology of tecnologies">
+        <img src="{{ tecnology.url }}" alt="{{ tecnology.name }}" />
       </div>
     </div>
-    <div class="card m-3">
-      <div class="card-header">
-        <h5 class="card-title text-center">Titulo del proyecto</h5>
-      </div>
-      <div class="card-body">
-        <p class="card-text text-justify p-2">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis iste,
-          deleniti delectus repellendus non saepe nihil repudiandae quasi
-          reprehenderit dolorum in, voluptatem sequi vero error enim est
-          consectetur aliquam. Exercitationem.
-        </p>
-        <div class="d-flex justify-content-between m-2">
-          <div class="card-skill-logo">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/2048px-HTML5_logo_and_wordmark.svg.png"
-              alt="HTML"
-            />
-          </div>
-          <div class="card-skill-logo">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/2048px-HTML5_logo_and_wordmark.svg.png"
-              alt="HTML"
-            />
-          </div>
-          <div class="card-skill-logo">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/2048px-HTML5_logo_and_wordmark.svg.png"
-              alt="HTML"
-            />
-          </div>
-          <div class="card-skill-logo">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/2048px-HTML5_logo_and_wordmark.svg.png"
-              alt="HTML"
-            />
-          </div>
-        </div>
-        <div class="card-action text-end m-2 mt-4">
-          <button class="btn btn-dark">VISITAR SITIO WEB</button>
-        </div>
-      </div>
+    <div class="card-action text-center m-2 mt-4">
+      <a
+        href="{{ proyect.url }}"
+        class="btn btn-dark"
+        target="_blank"
+        *ngIf="!modeEdit"
+        >Visitar</a
+      >
+      <button class="btn btn-dark me-3" *ngIf="modeEdit" [routerLink]="['proyect', proyect.id]" >
+        Editar
+      </button>
+      <button class="btn btn-outlined-dark ms-3" *ngIf="modeEdit" (click)="deleteProyect(proyect.id)">
+        Eliminar
+      </button>
     </div>
   </div>
-  
+</div>

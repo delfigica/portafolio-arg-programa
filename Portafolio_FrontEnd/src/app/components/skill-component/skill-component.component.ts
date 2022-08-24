@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-skill-component',
@@ -8,23 +8,13 @@ import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@ang
 export class SkillComponentComponent implements OnInit {
   @Input() modeEdit: boolean = false;
   @Input() skill: any;
-
-  skillName: string = "HTML";
-  
-  // @ts-ignore: Object is possibly 'null'.
-  @ViewChild('HTML' , { static: false }) spinner: ElementRef;
-
-  constructor(private renderer: Renderer2) {}
-
+  stroke: number;
   ngOnInit(): void {
-    // this.progress();
-    console.log(this.spinner)
-    if(this.skill !== undefined) {
-      this.skillName = this.skill.name
-    }
+    this.getPorcentage();
   }
 
-  progress(){
-    this.renderer.setStyle(this.spinner.nativeElement, 'stroke-dashoffset', 100)
+  getPorcentage() {
+    const percentage = this.skill.percentage;
+    this.stroke = Math.round(((100 - percentage) * 472) / 100);
   }
 }

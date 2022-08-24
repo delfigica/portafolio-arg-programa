@@ -1,0 +1,42 @@
+<div class="container p-5">
+  <h4 class="text-center mb-2">Proyecto</h4>
+  <form class="card p-5" (ngSubmit)="addProyect()">
+    <div class="form-outline mb-4">
+      <label class="form-label">Titulo del proyecto</label>
+      <input
+        type="text"
+        name="titleInput"
+        class="form-control"
+        [(ngModel)]="titleInput"
+        [ngModelOptions]="{standalone: true}"
+      />
+    </div>
+    <div class="form-outline mb-4">
+      <label class="form-label">Descripción</label>
+      <textarea
+        class="form-control"
+        name="descriptionInput"
+        rows="3"
+        [(ngModel)]="descriptionInput"
+        [ngModelOptions]="{standalone: true}"
+      ></textarea>
+    </div>
+    <div class="form-outline mb-4">
+      <label class="form-label">Url del proyecto</label>
+      <input
+        type="text"
+        name="urlInput"
+        class="form-control"
+        [(ngModel)]="urlInput"
+        [ngModelOptions]="{standalone: true}"
+      />
+    </div>
+    
+    <div class="d-flex">
+      <button type="submit" class="btn btn-dark m-auto">Siguiente</button>
+      <button routerLink="/admin/edit" class="btn btn-outline-secondary m-auto">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,33 @@
+<div class="container p-5">
+  <h4 class="text-center m-2">Tecnologias del proyecto</h4>
+  <form
+    [formGroup]="form"
+    class="mb-2 flex-wrap card"
+    novalidate
+    (ngSubmit)="addTecnologies()"
+  >
+  <div class="d-flex justify-content-evenly p-5">
+
+      <div
+      *ngFor="let tecnology of tecnologies; let i = index"
+      class="form-check form-check-inline form-switch"
+      >
+      <input
+      class="form-check-input"
+        type="checkbox"
+        role="switch"
+        formArrayName="selectedTecnologies"
+        [value]="tecnology.id"
+        (change)="onTecnologieChange($event)"
+        />
+        <label class="form-check-label" for="{{ tecnology.name }}">
+            {{ tecnology.name }}
+        </label>
+    </div>
+</div>
+    <div class="d-flex justify-content-evenly mb-3">
+      <button class="btn btn-dark" type="submit">Agregar proyecto</button>
+      <button class="btn" routerLink="/admin/edit" >Cancelar</button>
+    </div>
+  </form>
+</div>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './views/header/header.component';
@@ -23,6 +23,11 @@ import { AboutMeFormComponent } from './views/about-me-form/about-me-form.compon
 import { ExperienceFormComponent } from './views/experience-form/experience-form.component';
 import { EducationFormComponent } from './views/education-form/education-form.component';
 import { SkillFormComponent } from './views/skill-form/skill-form.component';
+import { ProyectFormComponent } from './views/proyect-form/proyect-form.component';
+import { TecnologyFormComponent } from './views/tecnology-form/tecnology-form.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -46,10 +51,13 @@ import { SkillFormComponent } from './views/skill-form/skill-form.component';
     ExperienceFormComponent,
     EducationFormComponent,
     SkillFormComponent,
+    ProyectFormComponent,
+    TecnologyFormComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'iniciar-sesion', component: LoginComponent },
@@ -66,9 +74,19 @@ import { SkillFormComponent } from './views/skill-form/skill-form.component';
         component: EducationFormComponent,
       },
       { path: 'admin/edit/add/skill', component: SkillFormComponent },
-      { path: 'admin/edit/skill/:skillId', component: SkillFormComponent }
-
+      { path: 'admin/edit/skill/:skillId', component: SkillFormComponent },
+      { path: 'admin/edit/add/proyect', component: ProyectFormComponent },
+      {
+        path: 'admin/edit/proyect/tecnologies/:proyectId',
+        component: TecnologyFormComponent
+      },
+      {
+        path: 'admin/edit/proyect/:proyectId',
+        component: ProyectFormComponent,
+      },
     ]),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
   ],
   providers: [],
   bootstrap: [AppComponent],
