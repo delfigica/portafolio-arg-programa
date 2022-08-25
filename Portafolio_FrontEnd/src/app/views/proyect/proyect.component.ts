@@ -10,8 +10,6 @@ export class ProyectComponent implements OnInit {
   @Input() modeEdit: boolean = false;
   public proyects: any;
 
-  constructor() {}
-
   ngOnInit(): void {
     this.getProyectData();
     console.log(this.proyects)

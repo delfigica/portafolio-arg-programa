@@ -1,14 +1,18 @@
 <div class="container" *ngIf="!modeEdit">
   <h4>Proyectos</h4>
   <div class="d-flex flex-wrap">
-    <app-proyect-component  *ngFor="let proyect of proyects" [proyect]="proyect"></app-proyect-component>
+    <app-proyect-component
+      *ngFor="let proyect of proyects"
+      [proyect]="proyect"
+    ></app-proyect-component>
   </div>
 </div>
 <div class="container" *ngIf="modeEdit">
   <h4>Proyectos</h4>
   <button class="btn btn-dark" routerLink="add/proyect">Agregar</button>
-  <div class="d-flex flex-wrap" *ngFor="let proyect of proyects">
+  <div class="d-flex flex-wrap">
     <app-proyect-component
+      *ngFor="let proyect of proyects"
       [modeEdit]="true"
       [proyect]="proyect"
     ></app-proyect-component>
