@@ -165,12 +165,12 @@ public class Controller {
 	}
 	
 	@PostMapping("/user/proyect/generate/{userId}")
-	public Proyect createProyect(@PathVariable Long userId, @RequestBody Proyect proyect) {
+	public String createProyect(@PathVariable Long userId, @RequestBody Proyect proyect) {
 		User user = iUser.findUser(userId);
 		List <Proyect> proyects = user.getProyects();
 		proyects.add(proyect);
 		iUser.saveUser(user);
-		return proyect;
+		return "Proyecto agregado con éxito";
 	}
 	
 	@DeleteMapping("/user/proyect/delete/{userId}/{proyectId}")
@@ -207,7 +207,7 @@ public class Controller {
 		return "Proyecto editado con éxito";
 	}
 	
-	@PostMapping("/user/proyect/addTecnology/{userId}/{proyectId}/{idSkill}")
+	@PostMapping("/user/proyect/addTecnology/{userId}/{idSkill}/{proyectId}")
 	public String addTecnology(@PathVariable Long userId, @PathVariable Long proyectId, @PathVariable Long idSkill) {
 		User user = iUser.findUser(userId);
 		List <Proyect> proyects = user.getProyects();
@@ -224,7 +224,7 @@ public class Controller {
 				iUser.saveUser(user);
 			}
 		});	
-		return "Tecnologia añadida con éxito";
+		return "Tecnologia añadida con éxito al proyecto";
 	}
 	
 	@GetMapping("/user/skill/{userId}")
