@@ -34,9 +34,7 @@ export class SkillComponentComponent implements OnInit {
       showCancelButton: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        const url = `https://backend-arg-progrma.herokuapp.com/user/skill/delete/${1}/${
-          skillId
-        }`;
+        const url = `https://backend-arg-progrma.herokuapp.com/user/skill/delete/${1}/${skillId}`;
         axios.delete(url).then((res) => {
           Swal.fire({
             text: res.data,

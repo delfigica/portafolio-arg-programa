@@ -28,7 +28,14 @@ import { TecnologyFormComponent } from './views/tecnology-form/tecnology-form.co
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
-import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { AngularFireModule } from '@angular/fire/compat';
+
+import {
+  canActivate,
+  redirectLoggedInTo,
+  redirectUnauthorizedTo,
+} from '@angular/fire/auth-guard';
+import { NavbarAdminComponent } from './components/navbar-admin/navbar-admin.component';
 
 @NgModule({
   declarations: [
@@ -54,14 +61,24 @@ import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
     SkillFormComponent,
     ProyectFormComponent,
     TecnologyFormComponent,
+    NavbarAdminComponent,
   ],
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase),
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
-      { path: 'iniciar-sesion', component: LoginComponent },
+      {
+        path: '',
+        component: HomeComponent,
+        ...canActivate(() => redirectLoggedInTo(['admin/edit'])),
+      },
+      {
+        path: 'iniciar-sesion',
+        component: LoginComponent,
+        ...canActivate(() => redirectLoggedInTo(['admin/edit'])),
+      },
       {
         path: 'admin/edit',
         component: EditComponent,

@@ -8,18 +8,16 @@ import { UserService } from 'src/app/services/user.services';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private userService: UserService, private route: Router) {}
+  constructor(
+    private userService: UserService,
+    private route: Router,
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
 
-  logOut() {
-    this.userService
-      .logout()
-      .then(() => {
-        this.route.navigate(['/']);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  }
+
+  logIn() {
+    this.route.navigate(['/iniciar-sesion']);
   }
 }
