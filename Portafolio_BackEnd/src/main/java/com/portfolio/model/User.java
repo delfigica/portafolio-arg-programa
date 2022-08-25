@@ -13,46 +13,50 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="USERS")
+@Table(name = "USERS")
 public class User {
-	
+
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(name = "TITLE" )
+
+	@Column(name = "TITLE")
 	private String title;
-	
+
 	@Column(name = "DESCRIPTION")
 	private String description;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
+	@Column(name = "USER_IMAGE")
+	private String userImage;
+
 	@OneToMany(cascade = CascadeType.ALL, targetEntity = Experience.class, orphanRemoval = true)
 	@JoinColumn(name = "PK_USER", referencedColumnName = "id", nullable = false)
 	private List<Experience> experiences;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, targetEntity = Education.class, orphanRemoval = true)
 	@JoinColumn(name = "PK_USER", referencedColumnName = "id", nullable = false)
 	private List<Education> educations;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, targetEntity = Proyect.class, orphanRemoval = true)
 	@JoinColumn(name = "PK_USER", referencedColumnName = "id", nullable = false)
 	private List<Proyect> proyects;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, targetEntity = Skill.class, orphanRemoval = true)
 	@JoinColumn(name = "PK_USER", referencedColumnName = "id", nullable = false)
 	private List<Skill> skills;
 
-	public User(Long id, String title, String description, String name, List<Experience> experiences,
+	public User(Long id, String title, String description, String name, String userImage, List<Experience> experiences,
 			List<Education> educations, List<Proyect> proyects, List<Skill> skills) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.name = name;
+		this.userImage = userImage;
 		this.experiences = experiences;
 		this.educations = educations;
 		this.proyects = proyects;
@@ -95,6 +99,14 @@ public class User {
 		this.name = name;
 	}
 
+	public String gerUserImage() {
+		return userImage;
+	}
+
+	public void setUserImage(String userImage) {
+		this.userImage = userImage;
+	}
+
 	public List<Experience> getExperiences() {
 		return experiences;
 	}
@@ -127,7 +139,7 @@ public class User {
 		this.proyects = proyects;
 	}
 
-	public void deleteProyect(Proyect proyect){
+	public void deleteProyect(Proyect proyect) {
 		this.proyects.remove(proyect);
 	}
 
@@ -139,7 +151,7 @@ public class User {
 		this.skills = skills;
 	}
 
-	public void deleteSkill(Skill skill){
+	public void deleteSkill(Skill skill) {
 		this.skills.remove(skill);
 	}
 }

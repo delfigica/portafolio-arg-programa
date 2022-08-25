@@ -10,6 +10,7 @@ import axios from 'axios';
 export class AboutMeFormComponent implements OnInit {
   descriptionInput: string;
   titleInput: string;
+  fileInput: File;
 
   public data: any;
 
@@ -50,15 +51,16 @@ export class AboutMeFormComponent implements OnInit {
           title: this.title,
           description: this.description,
           name: this.name,
-        }
+          file: this.fileInput,
+        },
       })
       .then((res) => {
-        this.data = res.data
-        this.router.navigate(['admin/edit'])
+        this.data = res.data;
+        this.router.navigate(['admin/edit']);
       })
       .catch(function (error) {
         console.log(error);
-      })
+      });
   }
 
   constructor(private router: Router) {}
