@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-about-me-form',
@@ -10,8 +11,7 @@ import axios from 'axios';
 export class AboutMeFormComponent implements OnInit {
   descriptionInput: string;
   titleInput: string;
-  fileInput: File;
-
+  nameInput: any;
   public data: any;
 
   public title: any;
@@ -28,9 +28,10 @@ export class AboutMeFormComponent implements OnInit {
       .get(url)
       .then((res) => {
         this.data = res.data;
-        this.title = this.data.title;
-        this.description = this.data.description;
-        this.name = this.data.name;
+        this.titleInput = this.data.title;
+        this.descriptionInput = this.data.description;
+        this.nameInput = this.data.name;
+        console.log(this.data)
       })
       .catch((err) => {
         console.log(err);
@@ -38,20 +39,14 @@ export class AboutMeFormComponent implements OnInit {
   }
 
   editUserData() {
-    if (this.titleInput.trim().length > 0) {
-      this.title = this.titleInput;
-    }
-    if (this.descriptionInput.trim().length > 0) {
-      this.description = this.descriptionInput;
-    }
+
     const url = `https://backend-arg-progrma.herokuapp.com/user/edit/${1}`;
     axios
       .put(url, null, {
         params: {
-          title: this.title,
-          description: this.description,
-          name: this.name,
-          file: this.fileInput,
+          title: this.titleInput,
+          description: this.descriptionInput,
+          name: this.nameInput,
         },
       })
       .then((res) => {

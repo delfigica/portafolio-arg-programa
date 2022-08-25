@@ -1,9 +1,5 @@
 package com.portfolio.controller;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +11,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.portfolio.model.Education;
 import com.portfolio.model.Experience;
@@ -56,28 +51,13 @@ public class Controller {
 	public User editUser(@PathVariable Long id,
 			@RequestParam("title") String newTitle,
 			@RequestParam("description") String newDescription,
-			@RequestParam("name") String newName,
-			@RequestParam("file") MultipartFile image) {
+			@RequestParam("name") String newName) {
 
 		User user = iUser.findUser(id);
 
 		user.setDescription(newDescription);
 		user.setName(newName);
 		user.setTitle(newTitle);
-		if (!image.isEmpty()) {
-			Path imageDirectory = Paths.get("src//main//resourse/images");
-			String absoluteRoute = imageDirectory.toFile().getAbsolutePath();
-
-			try {
-				byte[] bytesImg = image.getBytes();
-				Path fullPath = Paths.get(absoluteRoute + "//" + image.getOriginalFilename());
-				Files.write(fullPath, bytesImg);
-
-				user.setUserImage(image.getOriginalFilename());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
 		iUser.saveUser(user);
 		return user;
 	}
@@ -225,26 +205,6 @@ public class Controller {
 			}
 		});
 		return "Proyecto editado con éxito";
-	}
-
-	@PostMapping("/user/proyect/addTecnology/{userId}/{idSkill}/{proyectId}")
-	public String addTecnology(@PathVariable Long userId, @PathVariable Long proyectId, @PathVariable Long idSkill) {
-		User user = iUser.findUser(userId);
-		List<Proyect> proyects = user.getProyects();
-		List<Skill> skills = user.getSkills();
-
-		proyects.forEach((Proyect proyect) -> {
-			if (proyect.getId().equals(proyectId)) {
-				List<Skill> tecnologies = proyect.getTecnologies();
-				skills.forEach((Skill skill) -> {
-					if (skill.getId().equals(idSkill)) {
-						tecnologies.add(skill);
-					}
-				});
-				iUser.saveUser(user);
-			}
-		});
-		return "Tecnologia añadida con éxito al proyecto";
 	}
 
 	@GetMapping("/user/skill/{userId}")

@@ -1,15 +1,11 @@
 package com.portfolio.model;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 
 @Entity
@@ -30,17 +26,13 @@ public class Proyect {
 	@Column(name = "URL")
 	private String url;
 	
-	@OneToMany(cascade = CascadeType.ALL, targetEntity = Skill.class)
-	@JoinColumn(name = "PK_PROYECT", referencedColumnName = "id")
-	private List<Skill> tecnologies;
-
-	public Proyect(Long id, String title, String description, String url, List<Skill> tecnologies) {
+	public Proyect(Long id, String title, String description, String url) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.url = url;
-		this.tecnologies = tecnologies;
+
 	}
 
 	public Proyect() {
@@ -77,13 +69,5 @@ public class Proyect {
 
 	public void setUrl(String url) {
 		this.url = url;
-	}
-
-	public List<Skill> getTecnologies() {
-		return tecnologies;
-	}
-
-	public void setTecnologies(List<Skill> tecnologies) {
-		this.tecnologies = tecnologies;
 	}
 }

@@ -1,6 +1,19 @@
 <div class="container p-3">
   <h4 class="text-center mb-2">Información sobre mi</h4>
-  <form (ngSubmit)="editUserData()" class="card p-5" enctype="multipart/form-data">
+  <form
+    (ngSubmit)="editUserData()"
+    class="card p-5"
+  >
+    <div class="form-outline mb-4">
+      <label class="form-label">Nombre Completo</label>
+      <input
+        type="text"
+        name="nameInput"
+        class="form-control"
+        [(ngModel)]="nameInput"
+      />
+    </div>
+
     <div class="form-outline mb-4">
       <label class="form-label">Titulo</label>
       <input
@@ -20,20 +33,11 @@
         [(ngModel)]="descriptionInput"
       ></textarea>
     </div>
-    <div class="form-outline mb-4">
-      <label class="form-label">Imagen de usuario</label>
-      <input
-        type="file"
-        name="fileInput"
-        class="form-control"
-        [(ngModel)]="fileInput"
-      />
-    </div>
     <div class="d-flex btn-container">
-      <button type="submit" class="btn btn-dark m-auto ">
+      <button type="submit" class="btn btn-dark m-auto">
         Actualizar información
       </button>
-      <button routerLink="/admin/edit" class="btn btn-outline-secondary ">
+      <button routerLink="/admin/edit" class="btn btn-outline-secondary">
         Cancelar
       </button>
     </div>
