@@ -1,4 +1,4 @@
-<div class="container p-5">
+<div class="container p-3">
   <h4 class="text-center mb-2">Skills & Lenguajes</h4>
   <form class="card p-5" (ngSubmit)="skillId ? editSkill() : addSkill()">
     <div class="form-outline mb-4">
@@ -28,9 +28,9 @@
         [(ngModel)]="urlInput"
       />
     </div>
-    <div class="d-flex">
+    <div class="d-flex btn-container">
       <button type="submit" class="btn btn-dark m-auto">{{ btnText }}</button>
-      <button routerLink="/admin/edit" class="btn btn-outline-secondary m-auto">
+      <button routerLink="/admin/edit" class="btn btn-outline-secondary">
         Cancelar
       </button>
     </div>

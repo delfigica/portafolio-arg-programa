@@ -32,7 +32,6 @@ circle {
   stroke: url(#GradientColor);
   stroke-width: 20px;
   stroke-dasharray: 472;
-  /* animation: anim 0.6s linear forwards; */
 }
 .svg {
   position: absolute;
@@ -40,9 +39,4 @@ circle {
   left: 0;
 }
 
-/* @keyframes anim {
-  100% {
-    stroke-dashoffset: 100;
-  }
-} */
 

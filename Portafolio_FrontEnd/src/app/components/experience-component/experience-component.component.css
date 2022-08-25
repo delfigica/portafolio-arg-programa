@@ -1,9 +1,32 @@
 .experience-body-description {
-    width: 80%;
+  width: 80%;
 }
 .experience-logo {
-    width: 20%;
+  width: 20%;
 }
 .experience-body {
-    width: 70%;
+  width: 70%;
+}
+.btn-container-crud {
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 600px) {
+  .experience-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .experience-body-description {
+    width: 80%;
+  }
+  .experience-logo {
+    width: 50%;
+    margin: 5px 0px;
+  }
+  .experience-body {
+    width: 100%;
+  }
+  .btn-container-crud {
+    flex-direction: row;
+  }
 }

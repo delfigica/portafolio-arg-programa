@@ -1,4 +1,6 @@
-import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-skill-component',
@@ -9,22 +11,42 @@ export class SkillComponentComponent implements OnInit {
   @Input() modeEdit: boolean = false;
   @Input() skill: any;
 
-  skillName: string = "HTML";
-  
-  // @ts-ignore: Object is possibly 'null'.
-  @ViewChild('HTML' , { static: false }) spinner: ElementRef;
-
-  constructor(private renderer: Renderer2) {}
+  loading: boolean = true;
+  stroke: number;
 
   ngOnInit(): void {
-    // this.progress();
-    console.log(this.spinner)
-    if(this.skill !== undefined) {
-      this.skillName = this.skill.name
+    this.getPorcentage();
+
+    if (this.skill !== undefined) {
+      this.loading = false;
     }
   }
 
-  progress(){
-    this.renderer.setStyle(this.spinner.nativeElement, 'stroke-dashoffset', 100)
+  getPorcentage() {
+    const percentage = this.skill.percentage;
+    this.stroke = Math.round(((100 - percentage) * 472) / 100);
+  }
+
+  deleteSkill(skillId: any) {
+    Swal.fire({
+      text: '¿Está seguro que quiere eliminar esta información?',
+      confirmButtonText: 'Confirmar',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const url = `https://backend-arg-progrma.herokuapp.com/user/skill/delete/${1}/${
+          skillId
+        }`;
+        axios.delete(url).then((res) => {
+          Swal.fire({
+            text: res.data,
+          }).catch((err) => {
+            Swal.fire({
+              text: err.message,
+            });
+          });
+        });
+      }
+    });
   }
 }

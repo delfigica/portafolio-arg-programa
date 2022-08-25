@@ -1,5 +1,5 @@
-<div class="p-3 skill-container">
-  <div class="skill" id="circle{{skill.name}}">
+<div class="p-3 skill-container" *ngIf="!loading">
+  <div class="skill">
     <div class="outer">
       <div class="inner">
         <div class="number">
@@ -21,7 +21,13 @@
           <stop offset="100%" stop-color="#f3904f" />
         </linearGradient>
       </defs>
-      <circle cx="80" cy="80" r="70" stroke-linecap="round" />
+      <circle
+        cx="80"
+        cy="80"
+        r="70"
+        stroke-linecap="round"
+        [ngStyle]="{ 'stroke-dashoffset': stroke }"
+      />
     </svg>
   </div>
   <div class="d-flex justify-content-center" *ngIf="modeEdit">
@@ -41,7 +47,7 @@
         />
       </svg>
     </button>
-    <button type="button" class="btn btn-link btn-floating mx-1">
+    <button type="button" class="btn btn-link btn-floating mx-1" (click)="deleteSkill(skill.id)">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 448 512"
@@ -54,4 +60,7 @@
       </svg>
     </button>
   </div>
+</div>
+<div class="spinner-border" style="width: 3rem; height: 3rem;" role="status" *ngIf="loading">
+  <span class="visually-hidden">Loading...</span>
 </div>

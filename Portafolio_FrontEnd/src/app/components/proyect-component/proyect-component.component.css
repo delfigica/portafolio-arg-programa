@@ -1,6 +1,11 @@
 .card {
-    width: 45%;
+    width: 500px;
 }
 .card-skill-logo {
     width: 60px;
+}
+@media (max-width: 600px) {
+    .card {
+        width: 250px;
+    }
 }

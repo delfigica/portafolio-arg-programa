@@ -1,14 +1,27 @@
-<div class="d-flex align-items-center justify-content-between p-3">
+<div
+  class="d-flex align-items-center justify-content-between p-3 experience-container"
+>
   <div class="experience-logo me-3">
     <img src="../../assets/arg-programa.png" alt="" />
   </div>
   <div class="experience-body text-start">
-    <h4>{{ experience.name_institution }}</h4>
-    <p class="experience-body-description">
+    <h4 *ngIf="!loading" >{{ experience.name_institution }}</h4>
+    <p *ngIf="!loading" class="experience-body-description">
       {{ experience.description }}
     </p>
+    <p class="placeholder-glow" *ngIf="loading">
+      <span class="placeholder col-8"></span>
+    </p>
+    <div
+      class="placeholder-glow d-flex flex-column placeholder-container"
+      *ngIf="loading"
+    >
+      <span class="placeholder col-6 placeholder-sm"></span>
+      <span class="placeholder col-6 placeholder-sm my-3"></span>
+      <span class="placeholder col-6 placeholder-sm"></span>
+    </div>
   </div>
-  <div class="d-flex flex-column" *ngIf="modeEdit">
+  <div class="btn-container-crud" *ngIf="modeEdit">
     <button
       type="button"
       class="btn btn-link btn-floating mx-1"
@@ -25,7 +38,11 @@
         />
       </svg>
     </button>
-    <button type="button" class="btn btn-link btn-floating mx-1" (click)="deleteExperience(experience.id)">
+    <button
+      type="button"
+      class="btn btn-link btn-floating mx-1"
+      (click)="deleteExperience(experience.id)"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 448 512"
