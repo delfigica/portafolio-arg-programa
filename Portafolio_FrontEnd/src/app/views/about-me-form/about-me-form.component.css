@@ -1,0 +1,12 @@
+.btn {
+    margin: auto;
+}
+@media (max-width: 600px) {
+  .btn-container {
+    flex-direction: column;
+  }
+  .btn {
+    width: 100%;
+    margin: 15px 0px;
+  }
+}

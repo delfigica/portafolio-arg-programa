@@ -1,4 +1,4 @@
-<div class="d-flex align-items-center justify-content-between p-3">
+<div class="d-flex align-items-center justify-content-between p-3 education-container">
   <div class="education-logo me-3">
     <img src="../../assets/arg-programa.png" alt="" />
   </div>
@@ -8,7 +8,7 @@
       {{ education?.description }}
     </p>
   </div>
-  <div class="d-flex flex-column" *ngIf="modeEdit">
+  <div class="btn-container-crud" *ngIf="modeEdit">
     <button
       type="button"
       class="btn btn-link btn-floating mx-1"

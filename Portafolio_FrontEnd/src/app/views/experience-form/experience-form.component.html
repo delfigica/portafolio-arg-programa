@@ -1,4 +1,4 @@
-<div class="container p-5">
+<div class="container p-3">
   <h4 class="text-center mb-2">Experiencia laboral</h4>
   <form
     (ngSubmit)="experienceId ? editExperience() : addExperience()"
@@ -22,9 +22,9 @@
         [(ngModel)]="descriptionInput"
       ></textarea>
     </div>
-    <div class="d-flex">
+    <div class="d-flex btn-container">
       <button type="submit" class="btn btn-dark m-auto">{{ textBtn }}</button>
-      <button routerLink="/admin/edit" class="btn btn-outline-secondary m-auto">
+      <button routerLink="/admin/edit" class="btn btn-outline-secondary ">
         Cancelar
       </button>
     </div>

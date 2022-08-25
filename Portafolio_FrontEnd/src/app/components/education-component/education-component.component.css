@@ -1,9 +1,32 @@
 .education-body-description {
-    width: 80%;
+  width: 80%;
 }
 .education-logo {
-    width: 20%;
+  width: 20%;
 }
 .education-body {
-    width: 70%;
+  width: 70%;
+}
+.btn-container-crud {
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 600px) {
+  .education-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .education-body-description {
+    width: 100%;
+  }
+  .education-logo {
+    width: 50%;
+    margin: 5px 0px;
+  }
+  .education-body {
+    width: 100%;
+  }
+  .btn-container-crud {
+    flex-direction: row;
+  }
 }

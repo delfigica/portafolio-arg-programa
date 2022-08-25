@@ -1,7 +1,7 @@
 <div class="container" *ngIf="!modeEdit">
   <h4>Proyectos</h4>
-  <div class="d-flex flex-wrap" *ngFor="let proyect of proyects">
-    <app-proyect-component [proyect]="proyect"></app-proyect-component>
+  <div class="d-flex flex-wrap">
+    <app-proyect-component  *ngFor="let proyect of proyects" [proyect]="proyect"></app-proyect-component>
   </div>
 </div>
 <div class="container" *ngIf="modeEdit">

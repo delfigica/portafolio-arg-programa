@@ -4,3 +4,8 @@
 .card-skill-logo {
     width: 60px;
 }
+@media (max-width: 600px) {
+    .card {
+        width: 250px;
+    }
+}
