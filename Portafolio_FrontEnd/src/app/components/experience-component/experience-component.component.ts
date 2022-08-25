@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-experience-component',
@@ -7,7 +8,6 @@ import axios from 'axios';
   styleUrls: ['./experience-component.component.css'],
 })
 export class ExperienceComponentComponent implements OnInit {
-
   @Input() experience: any;
   public experiences: any;
 
@@ -30,18 +30,30 @@ export class ExperienceComponentComponent implements OnInit {
       })
       .then(() => {
         this.loading = false;
-      })
+      });
   }
 
   deleteExperience(ID: any) {
-    const url = `https://backend-arg-progrma.herokuapp.com/user/experience/delete/${1}/${ID}`;
-    axios.delete(url)
-    .then(res => {
-      console.log(res.data);
-    })
-    .catch(err => {
-      console.log(err)
-    })
+    Swal.fire({
+      text: '¿Está seguro que quiere eliminar esta información?',
+      confirmButtonText: 'Confirmar',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const url = `https://backend-arg-progrma.herokuapp.com/user/experience/delete/${1}/${ID}`;
+        axios
+          .delete(url)
+          .then((res) => {
+            Swal.fire({
+              text: res.data,
+            });
+          })
+          .catch((err) => {
+            Swal.fire({
+              text: err.message
+            })
+          });
+      }
+    });
   }
-
 }

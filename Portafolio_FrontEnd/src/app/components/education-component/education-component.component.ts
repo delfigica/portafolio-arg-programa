@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-education-component',
@@ -9,7 +10,7 @@ import axios from 'axios';
 export class EducationComponentComponent implements OnInit {
   @Input() education: any;
   public educations: any;
-  
+
   @Input() modeEdit: boolean = false;
   loading: boolean = true;
 
@@ -29,18 +30,30 @@ export class EducationComponentComponent implements OnInit {
       })
       .then(() => {
         this.loading = false;
-      })
+      });
   }
 
   deleteEducation(ID: any) {
-    const url = `https://backend-arg-progrma.herokuapp.com/user/education/delete/${1}/${ID}`;
-    axios
-      .delete(url)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    Swal.fire({
+      text: '¿Está seguro que quiere eliminar esta información?',
+      confirmButtonText: 'Confirmar',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const url = `https://backend-arg-progrma.herokuapp.com/user/education/delete/${1}/${ID}`;
+        axios
+          .delete(url)
+          .then((res) => {
+            Swal.fire({
+              text: res.data
+            })
+          })
+          .catch((err) => {
+            Swal.fire({
+              text: err.message
+            })
+          });
+      }
+    });
   }
 }

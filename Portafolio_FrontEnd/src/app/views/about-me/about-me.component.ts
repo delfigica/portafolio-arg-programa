@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-about-me',
   templateUrl: './about-me.component.html',
@@ -37,25 +38,33 @@ export class AboutMeComponent implements OnInit {
       })
       .then(() => {
         this.loading = false;
-      })
+      });
   }
 
   deleteUserData() {
-    const url = `https://backend-arg-progrma.herokuapp.com/user/edit/${1}`;
-    axios
-      .put(url, null, {
-        params: {
-          title: '',
-          description: '',
-          name: '',
-        },
-      })
-      .then((res) => {
-        this.data = res.data;
-        this.router.navigate(['admin/edit']);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    Swal.fire({
+      text: '¿Está seguro que quiere eliminar esta información?',
+      confirmButtonText: 'Confirmar',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const url = `https://backend-arg-progrma.herokuapp.com/user/edit/${1}`;
+        axios
+          .put(url, null, {
+            params: {
+              title: '',
+              description: '',
+              name: '',
+            },
+          })
+          .then((res) => {
+            this.data = res.data;
+            this.router.navigate(['admin/edit']);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+    });
   }
 }

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-proyect-component',
@@ -16,14 +17,26 @@ export class ProyectComponentComponent implements OnInit {
   ngOnInit(): void {}
 
   deleteProyect(proyectId: any) {
-    const url = `https://backend-arg-progrma.herokuapp.com/user/proyect/delete/${1}/${proyectId}`;
-    axios
-      .delete(url)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    Swal.fire({
+      text: '¿Está seguro que quiere eliminar esta información?',
+      confirmButtonText: 'Confirmar',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const url = `https://backend-arg-progrma.herokuapp.com/user/proyect/delete/${1}/${proyectId}`;
+        axios
+          .delete(url)
+          .then((res) => {
+            Swal.fire({
+              text: res.data,
+            });
+          })
+          .catch((err) => {
+            Swal.fire({
+              text: err.message
+            })
+          });
+      }
+    });
   }
 }
