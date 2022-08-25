@@ -1,11 +1,23 @@
 <div class="card m-3">
   <div class="card-header">
-    <h5 class="card-title text-center">{{ proyect.title }}</h5>
+    <h5 *ngIf="!loading" class="card-title text-center">{{ proyect.title }}</h5>
+    <p class="placeholder-glow" *ngIf="loading">
+      <span class="placeholder col-12"></span>
+    </p>
   </div>
   <div class="card-body">
-    <p class="card-text text-justify p-2">
+    <p *ngIf="!loading" class="card-text text-justify p-2">
       {{ proyect.description }}
     </p>
+
+    <div
+      class="placeholder-glow d-flex flex-column placeholder-container"
+      *ngIf="loading"
+    >
+      <span class="placeholder col-12 placeholder-sm"></span>
+      <span class="placeholder col-12 placeholder-sm my-3"></span>
+      <span class="placeholder col-12 placeholder-sm"></span>
+    </div>
     <div class="d-flex justify-content-evenly m-2">
       <div class="card-skill-logo" *ngFor="let tecnology of tecnologies">
         <img src="{{ tecnology.url }}" alt="{{ tecnology.name }}" />
@@ -16,13 +28,27 @@
         href="{{ proyect.url }}"
         class="btn btn-dark"
         target="_blank"
-        *ngIf="!modeEdit"
+        *ngIf="!modeEdit && !loading"
         >Visitar</a
       >
-      <button class="btn btn-dark me-3" *ngIf="modeEdit" [routerLink]="['proyect', proyect.id]" >
+      <a
+        href="#"
+        tabindex="-1"
+        class="btn btn-dark disabled placeholder col-4"
+        *ngIf="loading"
+      ></a>
+      <button
+        class="btn btn-dark me-3"
+        *ngIf="modeEdit"
+        [routerLink]="['proyect', proyect.id]"
+      >
         Editar
       </button>
-      <button class="btn btn-outlined-dark ms-3" *ngIf="modeEdit" (click)="deleteProyect(proyect.id)">
+      <button
+        class="btn btn-outlined-dark ms-3"
+        *ngIf="modeEdit"
+        (click)="deleteProyect(proyect.id)"
+      >
         Eliminar
       </button>
     </div>

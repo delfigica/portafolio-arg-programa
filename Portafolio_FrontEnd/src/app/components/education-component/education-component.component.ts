@@ -9,8 +9,9 @@ import axios from 'axios';
 export class EducationComponentComponent implements OnInit {
   @Input() education: any;
   public educations: any;
-
+  
   @Input() modeEdit: boolean = false;
+  loading: boolean = true;
 
   ngOnInit(): void {
     this.getEducationsData();
@@ -25,7 +26,10 @@ export class EducationComponentComponent implements OnInit {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .then(() => {
+        this.loading = false;
+      })
   }
 
   deleteEducation(ID: any) {

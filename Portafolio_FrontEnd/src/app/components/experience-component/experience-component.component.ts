@@ -12,6 +12,7 @@ export class ExperienceComponentComponent implements OnInit {
   public experiences: any;
 
   @Input() modeEdit: boolean = false;
+  loading: boolean = true;
 
   ngOnInit(): void {
     this.getExperienceData();
@@ -26,7 +27,10 @@ export class ExperienceComponentComponent implements OnInit {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .then(() => {
+        this.loading = false;
+      })
   }
 
   deleteExperience(ID: any) {

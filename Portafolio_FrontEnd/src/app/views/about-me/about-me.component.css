@@ -35,4 +35,7 @@
   .btn-container-crud {
     flex-direction: row;
   }
+  .placeholder-container {
+    align-items: center;
+  }
 }

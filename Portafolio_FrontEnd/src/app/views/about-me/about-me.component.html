@@ -7,8 +7,20 @@
     <p class="about-me-perfil-text mt-2">{{ name }}</p>
   </div>
   <div class="about-me-description">
-    <h4>{{ title }}</h4>
-    <p>
+    <h4 *ngIf="!loading">{{ title }}</h4>
+    <p class="placeholder-glow" *ngIf="loading">
+      <span class="placeholder col-8"></span>
+    </p>
+    <div
+      class="placeholder-glow d-flex flex-column placeholder-container"
+      *ngIf="loading"
+    >
+      <span class="placeholder col-6 placeholder-sm"></span>
+      <span class="placeholder col-6 placeholder-sm my-3"></span>
+      <span class="placeholder col-6 placeholder-sm"></span>
+    </div>
+    <p class="placeholder-glow" *ngIf="loading"></p>
+    <p *ngIf="!loading">
       {{ description }}
     </p>
   </div>

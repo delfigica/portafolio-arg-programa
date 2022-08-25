@@ -9,10 +9,11 @@ import axios from 'axios';
 export class ProyectComponent implements OnInit {
   @Input() modeEdit: boolean = false;
   public proyects: any;
+  loading: boolean = true;
 
   ngOnInit(): void {
     this.getProyectData();
-    console.log(this.proyects)
+    console.log(this.proyects);
   }
 
   getProyectData() {
@@ -22,10 +23,12 @@ export class ProyectComponent implements OnInit {
       .then((res) => {
         this.proyects = res.data;
         console.log(this.proyects);
-        
       })
       .catch((err) => {
         console.log(err);
+      })
+      .then(() => {
+        this.loading = false;
       });
   }
 }

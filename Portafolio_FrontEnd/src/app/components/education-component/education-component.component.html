@@ -1,10 +1,21 @@
-<div class="d-flex align-items-center justify-content-between p-3 education-container">
+<div class="d-flex justify-content-between p-3 education-container">
   <div class="education-logo me-3">
     <img src="../../assets/arg-programa.png" alt="" />
   </div>
   <div class="education-body">
-    <h4>{{ education?.name_institution }}</h4>
-    <p class="education-body-description">
+    <p class="placeholder-glow" *ngIf="loading">
+      <span class="placeholder col-8"></span>
+    </p>
+    <div
+      class="placeholder-glow d-flex flex-column placeholder-container"
+      *ngIf="loading"
+    >
+      <span class="placeholder col-6 placeholder-sm"></span>
+      <span class="placeholder col-6 placeholder-sm my-3"></span>
+      <span class="placeholder col-6 placeholder-sm"></span>
+    </div>
+    <h4 *ngIf="!loading">{{ education?.name_institution }}</h4>
+    <p *ngIf="!loading" class="education-body-description">
       {{ education?.description }}
     </p>
   </div>

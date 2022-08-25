@@ -8,10 +8,18 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SkillComponentComponent implements OnInit {
   @Input() modeEdit: boolean = false;
   @Input() skill: any;
+
   stroke: number;
+
   ngOnInit(): void {
     this.getPorcentage();
+
+    if (this.skill !== undefined) {
+      this.loading = false;
+    }
   }
+
+  loading: boolean = true;
 
   getPorcentage() {
     const percentage = this.skill.percentage;
