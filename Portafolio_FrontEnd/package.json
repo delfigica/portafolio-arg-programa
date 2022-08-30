@@ -20,6 +20,8 @@
     "@angular/platform-browser-dynamic": "~12.1.0",
     "@angular/router": "~12.1.0",
     "axios": "^0.27.2",
+    "lottie-web": "^5.9.6",
+    "ngx-lottie": "^7.1.0",
     "rxjs": "~6.6.0",
     "sweetalert2": "^11.4.29",
     "tslib": "^2.2.0",

@@ -33,8 +33,9 @@ export class ProyectComponentComponent implements OnInit {
           })
           .catch((err) => {
             Swal.fire({
-              text: err.message
+              text: 'Por favor intente de nuevo'
             })
+            console.log(err)
           });
       }
     });

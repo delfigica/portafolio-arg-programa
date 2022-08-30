@@ -29,7 +29,8 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire/compat';
-
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
 import {
   canActivate,
   redirectLoggedInTo,
@@ -37,6 +38,9 @@ import {
 } from '@angular/fire/auth-guard';
 import { NavbarAdminComponent } from './components/navbar-admin/navbar-admin.component';
 
+export function playerFactory(): any {  
+  return import('lottie-web');
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +71,7 @@ import { NavbarAdminComponent } from './components/navbar-admin/navbar-admin.com
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     FormsModule,
+    LottieModule.forRoot({ player: playerFactory }), 
     ReactiveFormsModule,
     RouterModule.forRoot([
       {
@@ -122,11 +127,6 @@ import { NavbarAdminComponent } from './components/navbar-admin/navbar-admin.com
       {
         path: 'admin/edit/add/proyect',
         component: ProyectFormComponent,
-        ...canActivate(() => redirectUnauthorizedTo(['/iniciar-sesion'])),
-      },
-      {
-        path: 'admin/edit/proyect/tecnologies/:proyectId',
-        component: TecnologyFormComponent,
         ...canActivate(() => redirectUnauthorizedTo(['/iniciar-sesion'])),
       },
       {

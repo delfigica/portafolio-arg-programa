@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-proyect-form',
@@ -18,13 +19,20 @@ export class ProyectFormComponent implements OnInit, OnDestroy {
   private sub: any;
 
   constructor(private router: Router, private route: ActivatedRoute) {}
+  
+  btnText: string = 'Agregar proyecto';
+
 
   ngOnInit(): void {
     this.getProyectData();
 
     this.sub = this.route.params.subscribe((params) => {
       this.proyectId = params['proyectId'];
+
     });
+    if (this.proyectId !== undefined) {
+      this.btnText = 'Editar proyecto';
+    }
   }
 
   ngOnDestroy() {
@@ -60,11 +68,35 @@ export class ProyectFormComponent implements OnInit, OnDestroy {
       })
       .then((res) => {
         console.log(res.data);
-        this.router.navigate(['admin/edit/proyect/tecnologies/' + res.data.id]);
+        this.router.navigate(['admin/edit']);
       })
       .catch((err) => {
         console.log(err);
       });
 
+  }
+
+  editProyect(){
+    const url = `https://backend-arg-progrma.herokuapp.com/user/proyect/edit/${1}/${this.proyectId}`;
+    axios
+      .put(url, null, {
+        params: {
+          title: this.titleInput,
+          description: this.descriptionInput,
+          url: this.urlInput
+        }
+      })
+      .then(res => {
+        Swal.fire({
+          text: res.data
+        })
+        this.router.navigate(['admin/edit']);
+      })
+      .catch(err => {
+        console.log(err)
+        Swal.fire({
+          text: 'Por favor intente de nuevo'
+        })
+      })
   }
 }

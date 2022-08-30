@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-experience-form',
@@ -41,7 +42,6 @@ export class ExperienceFormComponent implements OnInit, OnDestroy {
         if (this.experienceId !== undefined) {
           this.experience = this.experiences.find(
             (e: any) => e.id == this.experienceId
-
           );
           console.log(this.experience);
           this.descriptionInput = this.experience.description;
@@ -61,10 +61,15 @@ export class ExperienceFormComponent implements OnInit, OnDestroy {
         name_institution: this.institutionInput,
       })
       .then((res) => {
-        console.log(res);
+        Swal.fire({
+          text: res.data,
+        });
         this.router.navigate(['admin/edit']);
       })
       .catch((err) => {
+        Swal.fire({
+          text: 'Por favor, intente de nuevo',
+        });
         console.log(err);
       });
   }
@@ -81,11 +86,16 @@ export class ExperienceFormComponent implements OnInit, OnDestroy {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        Swal.fire({
+          text: res.data,
+        });
         this.router.navigate(['admin/edit']);
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+          text: 'Experiencia editada con éxito',
+        });
+        this.router.navigate(['admin/edit']);
       });
   }
 }

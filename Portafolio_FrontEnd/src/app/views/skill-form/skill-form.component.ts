@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-skill-form',
@@ -61,7 +62,9 @@ export class SkillFormComponent implements OnInit, OnDestroy {
         url: this.urlInput,
       })
       .then((res) => {
-        console.log(res);
+        Swal.fire({
+          text: res.data
+        })
         this.router.navigate(['admin/edit']);
       })
       .catch((err) => {
@@ -82,10 +85,15 @@ export class SkillFormComponent implements OnInit, OnDestroy {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        Swal.fire({
+          text: res.data
+        })
         this.router.navigate(['admin/edit']);
       })
       .catch((err) => {
+        Swal.fire({
+          text: 'Por favor, intente de nuevo'
+        })
         console.log(err);
       });
   }

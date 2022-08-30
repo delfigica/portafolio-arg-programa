@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-education-form',
@@ -59,10 +60,14 @@ export class EducationFormComponent implements OnInit, OnDestroy {
         name_institution: this.institutionInput,
       })
       .then((res) => {
-        console.log(res);
+        Swal.fire({
+          text: res.data
+        })
         this.router.navigate(['admin/edit']);
       })
       .catch((err) => {
+
+        this.router.navigate(['admin/edit']);
         console.log(err);
       });
   }
@@ -79,11 +84,13 @@ export class EducationFormComponent implements OnInit, OnDestroy {
         },
       })
       .then((res) => {
-        console.log(res.data);
         this.router.navigate(['admin/edit']);
       })
       .catch((err) => {
         console.log(err);
+        Swal.fire({
+          text: 'Por favor intente de nuevo'
+        })
       });
   }
 }

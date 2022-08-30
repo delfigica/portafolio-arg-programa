@@ -10,7 +10,7 @@
     #3b4371,
     #f3904f
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  margin-top: -100px;
   min-height: 90vh;
   color: white;
 }
@@ -20,12 +20,24 @@
 .banner-subtitle {
   font-size: 1.6em;
 }
+.animation-container {
+  width: 50%;
+}
 @media (max-width: 600px) {
   .banner-title {
     font-size: 2em;
+    text-transform: uppercase;
+    text-align: center;
   }
   .banner-subtitle {
-    font-size: 1.2em;
+    font-size: 1.5em;
     text-align: center;
+  }
+  .container-banner {
+    flex-direction: column-reverse;
+    margin-top: -50px;
+  }
+  .animation-container {
+    width: 100%;
   }
 }

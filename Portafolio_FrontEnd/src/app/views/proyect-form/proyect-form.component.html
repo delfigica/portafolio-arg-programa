@@ -1,6 +1,6 @@
 <div class="container p-3">
   <h4 class="text-center mb-2">Proyecto</h4>
-  <form class="card p-5" (ngSubmit)="addProyect()">
+  <form class="card p-5" (ngSubmit)="proyectId ? editProyect() : addProyect()">
     <div class="form-outline mb-4">
       <label class="form-label">Titulo del proyecto</label>
       <input
@@ -33,7 +33,7 @@
     </div>
     
     <div class="d-flex btn-container">
-      <button type="submit" class="btn btn-dark">Siguiente</button>
+      <button type="submit" class="btn btn-dark">{{btnText}}</button>
       <button routerLink="/admin/edit" class="btn btn-outline-secondary m-auto">
         Cancelar
       </button>

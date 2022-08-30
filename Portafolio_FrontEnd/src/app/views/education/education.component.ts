@@ -9,7 +9,7 @@ import axios from 'axios';
 export class EducationComponent implements OnInit {
   public educations: any;
   @Input() modeEdit: boolean = false;
-
+  count: number = 0;
   ngOnInit(): void {
     this.getEducationData();
   }
@@ -25,5 +25,9 @@ export class EducationComponent implements OnInit {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  counter() {
+    this.count += 1;
   }
 }
