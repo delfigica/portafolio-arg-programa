@@ -18,7 +18,7 @@ public class BackArgentinaProgramaApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("http://localhost:4200").allowedMethods("*").allowedHeaders("*");
+				registry.addMapping("/**").allowedOrigins("https://portafolio-arg-programa-1c4af.web.app").allowedMethods("*").allowedHeaders("*");
 			}
 		};
 	}
