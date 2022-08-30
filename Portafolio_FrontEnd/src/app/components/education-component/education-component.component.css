@@ -15,12 +15,13 @@
   .education-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
   .education-body-description {
     width: 100%;
   }
   .education-logo {
-    width: 50%;
+    width: 70%;
     margin: 5px 0px;
   }
   .education-body {

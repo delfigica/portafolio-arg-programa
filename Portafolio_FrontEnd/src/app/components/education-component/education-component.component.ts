@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 export class EducationComponentComponent implements OnInit {
   @Input() education: any;
   public educations: any;
-
+  
   @Input() deleteEducation: Function;
     
   @Input() modeEdit: boolean = false;

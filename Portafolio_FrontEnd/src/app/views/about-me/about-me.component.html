@@ -1,10 +1,8 @@
 <div
-  *ngIf="!modeEdit"
   class="pt-5 d-flex align-items-center about-me-container"
 >
   <div class="about-me-perfil">
-    <div class="about-me-img-container">
-    </div>
+    <div class="about-me-img-container"></div>
     <p class="about-me-perfil-text mt-2">{{ name }}</p>
   </div>
   <div class="about-me-description">
@@ -25,21 +23,8 @@
       {{ description }}
     </p>
   </div>
-</div>
-<div *ngIf="modeEdit" class="pt-5 d-flex align-items-center about-me-container">
-  <div class="about-me-perfil">
-    <div class="about-me-img-container">
-    </div>
-    <p class="about-me-perfil-text mt-2">{{ name }}</p>
-  </div>
-  <div class="about-me-description">
-    <h4>{{ title }}</h4>
-    <p>
-      {{ description }}
-    </p>
-  </div>
 
-  <div class="btn-container-crud">
+  <div class="btn-container-crud" *ngIf="modeEdit">
     <button
       type="button"
       class="btn btn-link btn-floating mx-1"

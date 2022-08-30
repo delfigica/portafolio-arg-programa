@@ -1,14 +1,10 @@
-<div *ngIf="!modeEdit" class="container mt-2 experience-container">
+<div class="container mt-2 experience-container">
   <h4 class="ms-3">Experiencia Laboral</h4>
-  <div *ngFor="let experience of experiences">
-    <app-experience-component
-      [experience]="experience"
-    ></app-experience-component>
-  </div>
-</div>
-<div *ngIf="modeEdit" class="container mt-2 experience-container">
-  <h4 class="ms-3">Experiencia Laboral</h4>
-  <button class="ms-3 btn btn-dark" routerLink="/admin/edit/add/experience">
+  <button
+    class="ms-3 btn btn-dark"
+    routerLink="/admin/edit/add/experience"
+    *ngIf="modeEdit"
+  >
     Agregar
   </button>
   <div *ngFor="let experience of experiences">
