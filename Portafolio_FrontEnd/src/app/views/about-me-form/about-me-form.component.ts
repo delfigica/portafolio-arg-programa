@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import axios from 'axios';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-about-me-form',
@@ -39,7 +38,6 @@ export class AboutMeFormComponent implements OnInit {
   }
 
   editUserData() {
-
     const url = `https://backend-arg-progrma.herokuapp.com/user/edit/${1}`;
     axios
       .put(url, null, {
