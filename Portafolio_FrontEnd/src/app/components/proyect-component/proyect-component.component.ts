@@ -30,6 +30,7 @@ export class ProyectComponentComponent implements OnInit {
             Swal.fire({
               text: res.data,
             });
+            window.location.reload();
           })
           .catch((err) => {
             Swal.fire({

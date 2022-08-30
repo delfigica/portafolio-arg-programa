@@ -47,10 +47,11 @@ export class ExperienceComponentComponent implements OnInit {
             Swal.fire({
               text: res.data,
             });
+            window.location.reload();
           })
           .catch((err) => {
             Swal.fire({
-              text: err.message
+              text: 'Por favor intente de nuevo'
             })
           });
       }

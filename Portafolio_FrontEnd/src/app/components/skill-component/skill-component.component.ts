@@ -35,15 +35,19 @@ export class SkillComponentComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         const url = `https://backend-arg-progrma.herokuapp.com/user/skill/delete/${1}/${skillId}`;
-        axios.delete(url).then((res) => {
-          Swal.fire({
-            text: res.data,
-          }).catch((err) => {
+        axios
+          .delete(url)
+          .then((res) => {
             Swal.fire({
-              text: err.message,
+              text: res.data,
+            });
+            window.location.reload();
+          })
+          .catch((err) => {
+            Swal.fire({
+              text: 'Por favor intente de nuevo',
             });
           });
-        });
       }
     });
   }

@@ -59,7 +59,7 @@ export class AboutMeComponent implements OnInit {
           })
           .then((res) => {
             this.data = res.data;
-            this.router.navigate(['admin/edit']);
+            window.location.reload()
           })
           .catch(function (error) {
             console.log(error);
