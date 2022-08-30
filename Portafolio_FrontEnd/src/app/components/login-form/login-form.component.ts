@@ -22,25 +22,17 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    if (this.formReg.value.email !== 'admin@portafolio.com') {
-      Swal.fire({
-        icon: 'error',
-        text: 'El correo electronico ingresado es incorrecto',
-      });
-    } else if (this.formReg.value.password !== 'argentina_programa') {
-      Swal.fire({
-        icon: 'error',
-        text: 'La contraseña ingresada es incorrecta',
-      });
-    } else {
       this.userService
         .login(this.formReg.value)
         .then((res) => {
           this.route.navigate(['/admin/edit']);
         })
         .catch((err) => {
+          Swal.fire({
+            text: 'Credenciales invalidas'
+          })
           console.log(err);
         });
     }
   }
-}
+
